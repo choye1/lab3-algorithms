@@ -15,12 +15,12 @@ namespace StackEntities
         {
         }
 
-        private void Push(T item)
+        public void Push(T item)
         {
             values.Add(item);
         }
 
-        private T? Pop()
+        public T? Pop()
         {
             if (!IsEmpty())
             {
@@ -32,21 +32,21 @@ namespace StackEntities
             return default;
         }
 
-        private T? Top()
+        public T? Top()
         {
             return ! IsEmpty() ? values[values.Count - 1] : default;
         }
-        private T? Peek() //Peek и Top это один и тот же метод но в лабе николаева он хочет Top а в шарпе используется конструкция Peek
+        public T? Peek() //Peek и Top это один и тот же метод но в лабе николаева он хочет Top а в шарпе используется конструкция Peek
         {
             return !IsEmpty() ? values[values.Count - 1] : default;
         }
 
-        private bool IsEmpty()
+        public bool IsEmpty()
         {
             return (values.Count == 0);
         }
 
-        private void Print()
+        public void Print()
         {
             if (!IsEmpty())
             {
@@ -54,6 +54,7 @@ namespace StackEntities
                 {
                     Console.Write($"{item}, ");
                 }
+                Console.WriteLine();
 
             }
 

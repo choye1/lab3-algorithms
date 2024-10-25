@@ -17,12 +17,12 @@ namespace QueueEntities
             {
             }
 
-            private void Enqueue(T item)
+            public void Enqueue(T item)
             {
                 values.Add(item);
             }
 
-            private T? Dequeue()
+            public T? Dequeue()
             {
                 if (!IsEmpty())
                 {
@@ -34,21 +34,21 @@ namespace QueueEntities
                 return default;
             }
 
-            private T? Peek()
+            public T? Peek()
             {
                 return !IsEmpty() ? values[0] : default;
             }
-            private T? Top() // Top и Peek имеют одинаковую логику, выбирайте на свой вкус
+            public T? Top() // Top и Peek имеют одинаковую логику, выбирайте на свой вкус
             {
                 return !IsEmpty() ? values[0] : default;
             }
 
-            private bool IsEmpty()
+            public bool IsEmpty()
             {
                 return (values.Count == 0);
             }
 
-            private void Print()
+            public void Print()
             {
                 if (!IsEmpty())
                 {
@@ -56,6 +56,7 @@ namespace QueueEntities
                     {
                         Console.Write($"{item}, ");
                     }
+                    Console.WriteLine();
 
                 }
 
