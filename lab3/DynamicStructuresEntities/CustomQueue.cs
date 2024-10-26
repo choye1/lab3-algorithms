@@ -1,44 +1,42 @@
-﻿using System.Linq;
-
-namespace StackEntities
+﻿namespace DynamicStructuresEntities
 {
-    public class CustomStack <T>
+    public class CustomQueue<T>
     {
         private List<T> values = new List<T>();
-        
-        public CustomStack (params T[] items)
+
+        public CustomQueue(params T[] items)
         {
             this.values.AddRange(items);
         }
 
-        public CustomStack ()
+        public CustomQueue()
         {
         }
 
-        public void Push(T item)
+        public void Enqueue(T item)
         {
             values.Add(item);
         }
 
-        public T? Pop()
+        public T? Dequeue()
         {
             if (!IsEmpty())
             {
-                T top = values[values.Count - 1];
-                values.RemoveAt(values.Count - 1);
+                T top = values[0];
+                values.RemoveAt(0);
                 return top;
             }
 
             return default;
         }
 
-        public T? Top()
+        public T? Peek()
         {
-            return ! IsEmpty() ? values[values.Count - 1] : default;
+            return !IsEmpty() ? values[0] : default;
         }
-        public T? Peek() //Peek и Top это один и тот же метод но в лабе николаева он хочет Top а в шарпе используется конструкция Peek
+        public T? Top() // Top и Peek имеют одинаковую логику, выбирайте на свой вкус
         {
-            return !IsEmpty() ? values[values.Count - 1] : default;
+            return !IsEmpty() ? values[0] : default;
         }
 
         public bool IsEmpty()
@@ -63,3 +61,5 @@ namespace StackEntities
     }
 
 }
+
+

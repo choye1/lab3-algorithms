@@ -1,4 +1,5 @@
-﻿using StackEntities;
+﻿
+using DynamicStructuresEntities;
 
 namespace ConsoleForTests
 {
