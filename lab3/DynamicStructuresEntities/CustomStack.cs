@@ -58,6 +58,11 @@
 
         }
 
+        public int Count()
+        {
+            return values.Count;
+        }
+
     }
 
 }
