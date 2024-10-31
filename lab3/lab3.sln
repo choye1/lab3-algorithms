@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleForTests", "ConsoleF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicStructuresEntities", "DynamicStructuresEntities\DynamicStructuresEntities.csproj", "{05A3C343-F142-45A1-95AC-CA1363A54CFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPNEntities", "RPNEntities\RPNEntities.csproj", "{F945D76A-F8D0-4351-99B0-B78D65993593}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPNEntities", "RPNEntities\RPNEntities.csproj", "{F945D76A-F8D0-4351-99B0-B78D65993593}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "part4", "part4\part4.csproj", "{60CDD42B-DA54-4BFF-99C5-68EAD8F077BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{F945D76A-F8D0-4351-99B0-B78D65993593}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F945D76A-F8D0-4351-99B0-B78D65993593}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F945D76A-F8D0-4351-99B0-B78D65993593}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60CDD42B-DA54-4BFF-99C5-68EAD8F077BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60CDD42B-DA54-4BFF-99C5-68EAD8F077BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60CDD42B-DA54-4BFF-99C5-68EAD8F077BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60CDD42B-DA54-4BFF-99C5-68EAD8F077BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
