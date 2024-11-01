@@ -21,7 +21,8 @@
         public void RemoveLogs()
         {
             File.Delete(path);
-            File.Create(path);
+            var a = File.Create(path);
+            a.Close();
         }
     }
 }
