@@ -26,7 +26,6 @@ namespace DynamicStructuresEntities
 
         public void ReadFile()
         {
-            List<string> lines = new List<string>();
             using (StreamReader reader = new StreamReader(path))
             {
                 string? line;
@@ -49,40 +48,51 @@ namespace DynamicStructuresEntities
                 string[] arr = lines[i].Split(" ");
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
-                foreach (string s in arr)
+                try
                 {
-                    if (s == "1")
+                    foreach (string s in arr)
                     {
-                        logger.Write($"Выполнена команда Enqueue({s.Substring(2)})");
-                        queue.Enqueue(s.Substring(2));
-                    }
-                    else if (s == "2")
-                    {
-                        logger.Write("Выполнена команда Dequeue");
-                        queue.Dequeue();
-                    }
-                    else if (s == "3")
-                    {
-                        logger.Write("Выполнена команда top");
-                        queue.Top();
-                    }
-                    else if (s == "4")
-                    {
-                        logger.Write("Выполнена команда isEmpty");
-                        queue.IsEmpty();
-                    }
-                    else if (s == "5")
-                    {
-                        logger.Write("Выполнена команда print");
+                        if (s.StartsWith("1"))
+                        {
+                            queue.Enqueue(s.Substring(2));
+                            logger.Write($"Выполнена команда Enqueue({s.Substring(2)})");
+                        }
+                        else if (s == "2")
+                        {
+                            queue.Dequeue();
+                            logger.Write("Выполнена команда Dequeue");
+                        }
+                        else if (s == "3")
+                        {
+                            queue.Top();
+                            logger.Write("Выполнена команда top");
+
+                        }
+                        else if (s == "4")
+                        {
+                            queue.IsEmpty();
+                            logger.Write("Выполнена команда isEmpty");
+
+                        }
+                        else if (s == "5")
+                        {
+                            queue.Print();
+                            logger.Write("Выполнена команда print");
+
+                        }
+                        else
+                        {
+                            logger.Write("Некорректный ввод");
+                        }
+
                         queue.Print();
-                    }
-                    else
-                    {
-                        logger.Write("Некорректный ввод");
-                    }
 
-                    queue.Print();
+                    }
+                }
 
+                catch (Exception)
+                {
+                    logger.Write("Некорректный ввод");
                 }
 
                 stopwatch.Stop();

@@ -55,7 +55,7 @@ namespace lab3
 
             foreach(int i  in arr)
             {
-                tbConsole.Text += arr[i] + " ";
+                tbConsole.Text += i + " ";
             }
 
             tbConsole.Text += "\n";
