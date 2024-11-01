@@ -5,7 +5,14 @@
     <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UseWPF>true</UseWPF>
+    <UseWPF>True</UseWPF>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DynamicStructuresEntities\DynamicStructuresEntities.csproj" />
+    <ProjectReference Include="..\Logger\Logger.csproj" />
+    <ProjectReference Include="..\part4\part4.csproj" />
+    <ProjectReference Include="..\RPNEntities\RPNEntities.csproj" />
+  </ItemGroup>
 
 </Project>

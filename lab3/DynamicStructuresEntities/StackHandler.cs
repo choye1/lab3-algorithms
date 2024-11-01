@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Loggers;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DynamicStructuresEntities
 {
-    internal class StackHandler
+    public class StackHandler
     {
+        Logger logger = new Logger();
+
         static string projectDirectory = Directory.GetCurrentDirectory();
         static string fileName;
         List<string> lines = new List<string>();
@@ -46,32 +49,32 @@ namespace DynamicStructuresEntities
                 {
                     if (s == "1")
                     {
-                        Console.WriteLine($"Выполнена команда push({s.Substring(2)})");
+                        logger.Write($"Выполнена команда push({s.Substring(2)})");
                         stack.Push(s.Substring(2));
                     }
                     else if (s == "2")
                     {
-                        Console.WriteLine("Выполнена команда pop");
+                        logger.Write("Выполнена команда pop");
                         stack.Pop();
                     }
                     else if (s == "3")
                     {
-                        Console.WriteLine("Выполнена команда top");
+                        logger.Write("Выполнена команда top");
                         stack.Top();
                     }
                     else if (s == "4")
                     {
-                        Console.WriteLine("Выполнена команда isEmpty");
+                        logger.Write("Выполнена команда isEmpty");
                         stack.IsEmpty();
                     }
                     else if (s == "5")
                     {
-                        Console.WriteLine("Выполнена команда print");
+                        logger.Write("Выполнена команда print");
                         stack.Print();
                     }
                     else
                     {
-                        Console.WriteLine("Некорректный ввод");
+                        logger.Write("Некорректный ввод");
                     }
 
                     stack.Print();
