@@ -3,21 +3,27 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using Loggers;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DynamicStructuresEntities
 {
-    internal class QueueHandler
+    public class QueueHandler
     {
-        static string projectDirectory = Directory.GetCurrentDirectory();
-        static string fileName;
+        string projectDirectory = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()).ToString()).ToString();
+        string fileName;
+        string path;
+        Logger logger = new Logger();
+
         List<string> lines = new List<string>();
         public QueueHandler(string fileName_)
         {
             fileName = fileName_;
+            path = Path.Combine(projectDirectory, fileName);
+
         }
 
-        string path = Path.Combine(projectDirectory, fileName);
         public void ReadFile()
         {
             List<string> lines = new List<string>();
@@ -35,6 +41,7 @@ namespace DynamicStructuresEntities
 
         public List<float> HandleLine()
         {
+
             List<float> timeForGraph = new List<float>();
             for (int i = 0; i < lines.Count; i++)
             {
@@ -46,32 +53,32 @@ namespace DynamicStructuresEntities
                 {
                     if (s == "1")
                     {
-                        Console.WriteLine($"Выполнена команда Enqueue({s.Substring(2)})");
+                        logger.Write($"Выполнена команда Enqueue({s.Substring(2)})");
                         queue.Enqueue(s.Substring(2));
                     }
                     else if (s == "2")
                     {
-                        Console.WriteLine("Выполнена команда Dequeue");
+                        logger.Write("Выполнена команда Dequeue");
                         queue.Dequeue();
                     }
                     else if (s == "3")
                     {
-                        Console.WriteLine("Выполнена команда top");
+                        logger.Write("Выполнена команда top");
                         queue.Top();
                     }
                     else if (s == "4")
                     {
-                        Console.WriteLine("Выполнена команда isEmpty");
+                        logger.Write("Выполнена команда isEmpty");
                         queue.IsEmpty();
                     }
                     else if (s == "5")
                     {
-                        Console.WriteLine("Выполнена команда print");
+                        logger.Write("Выполнена команда print");
                         queue.Print();
                     }
                     else
                     {
-                        Console.WriteLine("Некорректный ввод");
+                        logger.Write("Некорректный ввод");
                     }
 
                     queue.Print();

@@ -1,7 +1,11 @@
-﻿namespace DynamicStructuresEntities
+﻿using Loggers;
+
+namespace DynamicStructuresEntities
 {
     public class CustomStack<T>
     {
+        Logger logger = new Logger();
+
         private List<T> values = new List<T>();
 
         public CustomStack(params T[] items)
@@ -50,9 +54,9 @@
             {
                 foreach (var item in values)
                 {
-                    Console.Write($"{item}, ");
+                    logger.Write($"{item}, ");
                 }
-                Console.WriteLine();
+                logger.Write(" ");
 
             }
 
