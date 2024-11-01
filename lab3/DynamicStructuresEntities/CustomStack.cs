@@ -54,12 +54,19 @@ namespace DynamicStructuresEntities
             {
                 foreach (var item in values)
                 {
-                    logger.Write($"{item}, ");
+                    logger.Write($"{item}");
+
+                    if (values.IndexOf(item) == values.Count-1)
+                    {
+                        logger.WriteLine(". ");
+                    }
+
+                    else
+                    {
+                        logger.Write(", ");
+                    }
                 }
-                logger.Write(" ");
-
             }
-
         }
         public bool UniqueValue(T value)
         {

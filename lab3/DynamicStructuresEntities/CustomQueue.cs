@@ -52,10 +52,18 @@ namespace DynamicStructuresEntities
             {
                 foreach (var item in values)
                 {
-                     logger.Write($"{item}, ");
-                }
-                logger.Write(" ");
+                    logger.Write($"{item}");
 
+                    if (values.IndexOf(item) == values.Count-1)
+                    {
+                        logger.WriteLine(". ");
+                    }
+
+                    else
+                    {
+                        logger.Write(", ");
+                    }
+                }
             }
         }
         public List<T> GetQueue() 
@@ -63,7 +71,6 @@ namespace DynamicStructuresEntities
             return values;
         }
     }
-
 }
 
 

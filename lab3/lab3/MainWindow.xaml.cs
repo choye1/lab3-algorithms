@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DynamicStructuresEntities;
+using Loggers;
 
 namespace lab3
 {
@@ -26,16 +27,22 @@ namespace lab3
         }
 
 
+
         public void Main()
         {
-            string namefile = "a.txt"; //СЮДА ХУЯЧИМ ИМЯ ФАЙЛА, ИЗ КОТОРОГО ЧИТАЕМ ДАННЫЕ
-            float[] result = new QueueHandler(namefile).HandleFile();
+            Logger logger = new Logger();
+            logger.RemoveLogs();
+            string namefile = "a.txt"; //СЮДА ХУЯЧИМ ИМЯ ФАЙЛА, ИЗ КОТОРОГО ЧИТАЕМ ДАННЫЕ ДЛЯ КУЕУЕ
+            string namefileForStack = "b.txt"; //СЮДА ХУЯЧИМ ИМЯ ФАЙЛА, ИЗ КОТОРОГО ЧИТАЕМ ДАННЫЕ ДЛЯ СТЕКА
 
-            WriteArray(result);
+            float[] timeForGraphQueue = new QueueHandler(namefile).HandleFile();
 
-            //float[] result2 = new StackHandler(namefile).HandleFile();
+            logger.WriteLine("^Queue^");
+            logger.WriteLine("\\/Stack\\/");
 
-            // WriteArray(result2);
+            float[] timeForGraphStack = new StackHandler(namefileForStack).HandleFile();
+
+            WriteArray(logger.Read());
 
         }
 
@@ -49,13 +56,13 @@ namespace lab3
             tbConsole.Text += str + "\n";
         }
 
-        private void WriteArray(float[] arr)
+        private void WriteArray(string[] arr)
         {
             tbConsole.Text += "\n";
 
-            foreach(int i  in arr)
+            foreach(string i  in arr)
             {
-                tbConsole.Text += i + " ";
+                tbConsole.Text += i + " " + "\n";
             }
 
             tbConsole.Text += "\n";
