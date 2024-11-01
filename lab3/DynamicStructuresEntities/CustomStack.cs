@@ -61,7 +61,17 @@ namespace DynamicStructuresEntities
             }
 
         }
-
+        public bool UniqueValue(T value)
+        {
+            foreach(var item in values)
+            {
+                if (item.Equals(value))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         public List<T> GetStack()
         {
             return values;

@@ -1,4 +1,4 @@
-﻿using Loggers;
+﻿    using Loggers;
 namespace DynamicStructuresEntities
 {
     public class CustomQueue<T>
@@ -57,9 +57,11 @@ namespace DynamicStructuresEntities
                 logger.Write(" ");
 
             }
-
         }
-
+        public List<T> GetQueue() 
+        {
+            return values;
+        }
     }
 
 }
