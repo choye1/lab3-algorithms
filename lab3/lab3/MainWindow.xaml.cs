@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DynamicStructuresEntities;
+using Loggers;
 
 namespace lab3
 {
@@ -26,14 +27,19 @@ namespace lab3
         }
 
 
+
         public void Main()
         {
-            string namefile = "a.txt"; //СЮДА ХУЯЧИМ ИМЯ ФАЙЛА, ИЗ КОТОРОГО ЧИТАЕМ ДАННЫЕ
-            float[] result = new QueueHandler(namefile).HandleFile();
+            Logger logger = new Logger();
+            string namefile = "a.txt"; //СЮДА ХУЯЧИМ ИМЯ ФАЙЛА, ИЗ КОТОРОГО ЧИТАЕМ ДАННЫЕ ДЛЯ КУЕУЕ
+            string namefileForStack = "b.txt"; //СЮДА ХУЯЧИМ ИМЯ ФАЙЛА, ИЗ КОТОРОГО ЧИТАЕМ ДАННЫЕ ДЛЯ СТЕКА
 
-            WriteArray(result);
+            float[] timeForGraphQueue = new QueueHandler(namefile).HandleFile();
 
-            //float[] result2 = new StackHandler(namefile).HandleFile();
+            logger.WriteLine("^Queue^");
+            logger.WriteLine("\\/Stack\\/");
+
+            float[] timeForGraphStack = new StackHandler(namefileForStack).HandleFile();
 
             // WriteArray(result2);
 

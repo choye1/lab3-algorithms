@@ -12,18 +12,20 @@ namespace DynamicStructuresEntities
     {
         Logger logger = new Logger();
 
-        static string projectDirectory = Directory.GetCurrentDirectory();
-        static string fileName;
+        string projectDirectory = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()).ToString()).ToString();
+        string fileName;
+        string path;
+
         List<string> lines = new List<string>();
         public StackHandler(string fileName_) 
         {
             fileName = fileName_;
+            path = Path.Combine(projectDirectory, fileName);
+
         }
 
-        string path = Path.Combine(projectDirectory, fileName);
         public void ReadFile()
         {
-            List<string> lines = new List<string>();
             using (StreamReader reader = new StreamReader(path))
             {
                 string? line;
@@ -45,40 +47,49 @@ namespace DynamicStructuresEntities
                 string[] arr = lines[i].Split(" ");
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
-                foreach (string s in arr)
+                try
                 {
-                    if (s == "1")
+                    foreach (string s in arr)
                     {
-                        logger.Write($"Выполнена команда push({s.Substring(2)})");
-                        stack.Push(s.Substring(2));
-                    }
-                    else if (s == "2")
-                    {
-                        logger.Write("Выполнена команда pop");
-                        stack.Pop();
-                    }
-                    else if (s == "3")
-                    {
-                        logger.Write("Выполнена команда top");
-                        stack.Top();
-                    }
-                    else if (s == "4")
-                    {
-                        logger.Write("Выполнена команда isEmpty");
-                        stack.IsEmpty();
-                    }
-                    else if (s == "5")
-                    {
-                        logger.Write("Выполнена команда print");
+                        if (s ==null || s.Length == 0) continue;
+
+                        if (s.StartsWith("1"))
+                        {
+                            logger.WriteLine($"Выполнена команда push({s.Substring(2)})");
+                            stack.Push(s.Substring(2));
+                        }
+                        else if (s == "2")
+                        {
+                            logger.WriteLine("Выполнена команда pop");
+                            stack.Pop();
+                        }
+                        else if (s == "3")
+                        {
+                            logger.WriteLine("Выполнена команда top");
+                            stack.Top();
+                        }
+                        else if (s == "4")
+                        {
+                            logger.WriteLine("Выполнена команда isEmpty");
+                            stack.IsEmpty();
+                        }
+                        else if (s == "5")
+                        {
+                            logger.WriteLine("Выполнена команда print");
+                            stack.Print();
+                        }
+                        else
+                        {
+                            logger.WriteLine("Некорректный ввод");
+                        }
+
                         stack.Print();
                     }
-                    else
-                    {
-                        logger.Write("Некорректный ввод");
-                    }
+                }
+                catch (Exception)
+                {
+                    logger.WriteLine("Некорректный ввод");
 
-                    stack.Print();
-                    
                 }
 
                 stopwatch.Stop();
