@@ -62,6 +62,11 @@ namespace DynamicStructuresEntities
 
         }
 
+        public List<T> GetStack()
+        {
+            return values;
+        }
+
         public int Count()
         {
             return values.Count;
