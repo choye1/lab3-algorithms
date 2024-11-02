@@ -7,20 +7,21 @@ using DynamicStructuresEntities;
 
 namespace part4
 {
-    public class Task7<T>
+    public class Task11<T>
     {
         CustomQueue<T> queue = new CustomQueue<T>();
 
-        public List<T> Deleter (List<T> list, T val)
+        public List<T> Doubling(List<T> list)
         {
             foreach (T item in list)
             {
-                if (!item.Equals(val))
-                {
-                    queue.Enqueue(item);
-                }
-            }   
-            return queue.GetQueue();
+                queue.Enqueue(item);
+            }
+            foreach (T item in list)
+            {
+                queue.Enqueue(item);
+            }
+            return queue.GetQueue();     
         }
     }
 }

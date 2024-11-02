@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace part4
 {
-    internal class Task4<T>
+    public class Task4<T>
     {
         CustomStack<T> stack = new CustomStack<T>();
         int count = 0;

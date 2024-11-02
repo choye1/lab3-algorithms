@@ -7,7 +7,7 @@ using DynamicStructuresEntities;
 
 namespace part4
 {
-    internal class Task6<T> where T : IComparable<T>
+    public class Task6<T> where T : IComparable<T>
     {
         CustomQueue<T> queue = new CustomQueue<T>();
 
