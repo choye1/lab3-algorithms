@@ -24,7 +24,7 @@ namespace DynamicStructuresEntities
 
         public T? Pop()
         {
-            if (!IsEmpty())
+            if (!IsEmpty1())
             {
                 T top = values[values.Count - 1];
                 values.RemoveAt(values.Count - 1);
@@ -36,11 +36,11 @@ namespace DynamicStructuresEntities
 
         public T? Top()
         {
-            return !IsEmpty() ? values[values.Count - 1] : default;
+            return !IsEmpty1() ? values[values.Count - 1] : default;
         }
         public T? Peek() //Peek и Top это один и тот же метод но в лабе николаева он хочет Top а в шарпе используется конструкция Peek
         {
-            return !IsEmpty() ? values[values.Count - 1] : default;
+            return !IsEmpty1() ? values[values.Count - 1] : default;
         }
 
         public bool IsEmpty()

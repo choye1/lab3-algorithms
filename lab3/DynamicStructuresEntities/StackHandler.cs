@@ -46,11 +46,12 @@ namespace DynamicStructuresEntities
                 CustomStack<string> stack = new CustomStack<string>();
                 string[] arr = lines[i].Split(" ");
                 Stopwatch stopwatch = new Stopwatch();
-                stopwatch.Start();
                 try
                 {
                     foreach (string s in arr)
                     {
+                        stopwatch.Start();
+
                         if (s ==null || s.Length == 0) continue;
 
                         if (s.StartsWith("1"))
@@ -83,7 +84,12 @@ namespace DynamicStructuresEntities
                             logger.WriteLine("Некорректный ввод");
                         }
 
-                        stack.Print();
+                       // stack.Print();
+
+                        stopwatch.Stop();
+                        TimeSpan timeSpan = stopwatch.Elapsed;
+                        stopwatch.Reset();
+                        timeForGraph.Add((float)timeSpan.TotalMilliseconds * 100);
                     }
                 }
                 catch (Exception)
@@ -92,10 +98,6 @@ namespace DynamicStructuresEntities
 
                 }
 
-                stopwatch.Stop();
-                TimeSpan timeSpan = stopwatch.Elapsed;
-                stopwatch.Reset();
-                timeForGraph.Add((float)timeSpan.TotalMilliseconds * 100);
             }
 
             return timeForGraph;

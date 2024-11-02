@@ -22,7 +22,7 @@ namespace DynamicStructuresEntities
 
         public T? Dequeue()
         {
-            if (!IsEmpty())
+            if (!IsEmpty1())
             {
                 T top = values[0];
                 values.RemoveAt(0);
@@ -34,16 +34,16 @@ namespace DynamicStructuresEntities
 
         public T? Peek()
         {
-            return !IsEmpty() ? values[0] : default;
+            return !IsEmpty1() ? values[0] : default;
         }
         public T? Top() // Top и Peek имеют одинаковую логику, выбирайте на свой вкус
         {
-            return !IsEmpty() ? values[0] : default;
+            return !IsEmpty1() ? values[0] : default;
         }
 
         public bool IsEmpty()
         {
-            logger.Write((values.Count == 0).ToString());
+            logger.Write((values.Count == 0).ToString() + "\n");
             return (values.Count == 0);
         }
 

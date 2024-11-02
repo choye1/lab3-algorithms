@@ -30,11 +30,12 @@ namespace DynamicStructuresEntities
             List<float> timeForGraph = new List<float>();
 
             Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
             try
             {
                 foreach (string s in command)
                 {
+                    stopwatch.Start();
+
                     if (s == null || s.Length == 0) continue;
 
                     if (s.StartsWith("1"))
@@ -68,6 +69,11 @@ namespace DynamicStructuresEntities
                     }
 
                     //stack.Print();
+
+                    stopwatch.Stop();
+                    TimeSpan timeSpan = stopwatch.Elapsed;
+                    stopwatch.Reset();
+                    timeForGraph.Add((float)timeSpan.TotalMilliseconds * 100);
                 }
             }
             catch (Exception)
@@ -76,10 +82,7 @@ namespace DynamicStructuresEntities
 
             }
 
-            stopwatch.Stop();
-            TimeSpan timeSpan = stopwatch.Elapsed;
-            stopwatch.Reset();
-            timeForGraph.Add((float)timeSpan.TotalMilliseconds * 100);
+            
 
 
             return timeForGraph;

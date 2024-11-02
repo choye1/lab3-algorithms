@@ -14,7 +14,7 @@
         <Label Content="Command:" HorizontalAlignment="Left" Height="32" Margin="10,341,0,0" VerticalAlignment="Top" Width="117"/>
         <Button Content="Enter" HorizontalAlignment="Left" Height="32" Margin="557,341,0,0" VerticalAlignment="Top" Width="179" Click="Button_Click"/>
         <Button Content="Считать комманды из файла" HorizontalAlignment="Left" Height="32" Margin="557,383,0,0" VerticalAlignment="Top" Width="179" Click="UsingCommandFile"/>
-        <ScottPlot:WpfPlot x:Name="GraphStack" HorizontalAlignment="Left" Height="139" Margin="604,160,0,0"  VerticalAlignment="Top" Width="192"/>
+        <ScottPlot:WpfPlot x:Name="GraphStack" HorizontalAlignment="Left" Height="139" Margin="588,160,0,0"  VerticalAlignment="Top" Width="192"/>
 
     </Grid>
 </Window>

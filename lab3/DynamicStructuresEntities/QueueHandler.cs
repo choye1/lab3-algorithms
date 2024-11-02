@@ -49,11 +49,12 @@ namespace DynamicStructuresEntities
                 CustomQueue<string> queue = new CustomQueue<string>();
                 string[] arr = lines[i].Split(" ");
                 Stopwatch stopwatch = new Stopwatch();
-                stopwatch.Start();
                 try
                 {
                     foreach (string s in arr)
                     {
+                        stopwatch.Start();
+
                         if (s ==null  || s.Length == 0) continue;
 
                         if (s.StartsWith("1"))
@@ -89,7 +90,12 @@ namespace DynamicStructuresEntities
                             logger.WriteLine("Некорректный ввод");
                         }
 
-                        queue.Print();
+                        //queue.Print();
+
+                        stopwatch.Stop();
+                        TimeSpan timeSpan = stopwatch.Elapsed;
+                        stopwatch.Reset();
+                        timeForGraph.Add((float)timeSpan.TotalMilliseconds * 100);
 
                     }
                 }
@@ -99,10 +105,7 @@ namespace DynamicStructuresEntities
                     logger.Write("Некорректный ввод");
                 }
 
-                stopwatch.Stop();
-                TimeSpan timeSpan = stopwatch.Elapsed;
-                stopwatch.Reset();
-                timeForGraph.Add((float)timeSpan.TotalMilliseconds * 100);
+               
             }
 
             return timeForGraph;
