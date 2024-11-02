@@ -48,10 +48,14 @@ namespace DynamicStructuresEntities
             logger.Write((values.Count == 0).ToString());
             return (values.Count == 0);
         }
+        public bool IsEmpty1()
+        {
+            return (values.Count == 0);
+        }
 
         public void Print()
         {
-            if (!IsEmpty())
+            if (!IsEmpty1())
             {
                 for (int i = 0; i < values.Count; i++)
                 {
@@ -66,6 +70,7 @@ namespace DynamicStructuresEntities
                     }
 
                 }
+                logger.Write("\n");
             }
         }
         public bool UniqueValue(T value)

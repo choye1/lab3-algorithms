@@ -97,6 +97,7 @@ namespace lab3
                     stackHandler.Handle();
                     WriteArray(logger.Read());
                 }
+                else { throw new Exception("Некорректный ввод, используйте синтаксис [queue/stack] command [args]"); }
             }
             catch (Exception ex) 
             {
@@ -115,6 +116,7 @@ namespace lab3
 
             List<string> ParsedCommand = new List<string>();
             string[] args = command.Split(' ');
+            if (args.Length < 2) { throw new Exception("Некорректный ввод адресата комманды, используйте следующий синтаксис: [stack/queue] command [args]"); }
             string addresseeCommand = args[0];
             string commandName = args[1];
             args[0] = string.Empty;
@@ -205,6 +207,44 @@ namespace lab3
             }
 
             return result.ToArray();
+        }
+
+        private void UsingCommandFile(object sender, RoutedEventArgs e)
+        {
+
+            Logger logger = new Logger();
+            logger.RemoveLogs();
+            string namefile = "a.txt"; //СЮДА ХУЯЧИМ ИМЯ ФАЙЛА, ИЗ КОТОРОГО ЧИТАЕМ ДАННЫЕ ДЛЯ КУЕУЕ
+            string namefileForStack = "b.txt"; //СЮДА ХУЯЧИМ ИМЯ ФАЙЛА, ИЗ КОТОРОГО ЧИТАЕМ ДАННЫЕ ДЛЯ СТЕКА
+
+            float[] timeForGraphQueue = new QueueHandler(namefile).HandleFile();
+            WriteGraph(timeForGraphQueue, "queue");
+            logger.WriteLine("^Queue^");
+            logger.WriteLine("\\/Stack\\/");
+
+            float[] timeForGraphStack = new StackHandler(namefileForStack).HandleFile();
+
+            WriteArray(logger.Read());
+        }
+
+        private void WriteGraph(float[]times, string addreess)
+        {
+            List<float> dataX = new List<float>();
+            for(int i = 0; i < times.Length; i++) { dataX.Add((float)i); }
+            if(addreess == "queue")
+            {
+                GraphQueue.Plot.Add.Scatter(dataX.ToArray(), times);
+                GraphQueue.Plot.Axes.SetLimits(-1, dataX.Max() + 1, times.Min() - 2, times.Max() + 2);
+                GraphQueue.Refresh();
+
+            }
+            else
+            {
+                GraphStack.Plot.Add.Scatter(dataX.ToArray(), times);
+                GraphStack.Plot.Axes.SetLimits(-1, dataX.Max() + 1, times.Min() - 2, times.Max() + 2);
+                GraphStack.Refresh();
+            }
+
         }
     }
 }

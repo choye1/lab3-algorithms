@@ -1,4 +1,4 @@
-﻿    using Loggers;
+﻿using Loggers;
 namespace DynamicStructuresEntities
 {
     public class CustomQueue<T>
@@ -47,14 +47,19 @@ namespace DynamicStructuresEntities
             return (values.Count == 0);
         }
 
+        public bool IsEmpty1()
+        {
+            return (values.Count == 0);
+        }
+
         public void Print()
         {
-            if (!IsEmpty())
+            if (!IsEmpty1())
             {
-                for(int i = 0 ; i < values.Count; i++)
+                for (int i = 0; i < values.Count; i++)
                 {
                     logger.Write($"{values[i]}");
-                    if (i !=  values.Count - 1)
+                    if (i != values.Count - 1)
                     {
                         logger.Write(", ");
                     }
@@ -64,9 +69,10 @@ namespace DynamicStructuresEntities
                     }
 
                 }
+                logger.Write("\n");
             }
         }
-        public List<T> GetQueue() 
+        public List<T> GetQueue()
         {
             return values;
         }

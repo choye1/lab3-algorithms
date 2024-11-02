@@ -9,6 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ScottPlot" Version="5.0.42" />
+    <PackageReference Include="ScottPlot.WPF" Version="5.0.42" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DynamicStructuresEntities\DynamicStructuresEntities.csproj" />
     <ProjectReference Include="..\Logger\Logger.csproj" />
     <ProjectReference Include="..\part4\part4.csproj" />
