@@ -24,6 +24,8 @@ namespace DynamicStructuresEntities
 
         }
 
+
+
         public void ReadFile()
         {
             using (StreamReader reader = new StreamReader(path))
