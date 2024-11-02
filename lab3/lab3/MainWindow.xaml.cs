@@ -31,6 +31,7 @@ namespace lab3
 
 
         CustomQueue<string> queue = new CustomQueue<string>();
+        CustomStack<string> stack = new CustomStack<string>();
 
         public void Main()
         {
@@ -92,8 +93,8 @@ namespace lab3
                 }
                 else if (command[0] == "s") 
                 {
-                    //StackHandler stackHandler = new StackHandler(WriteCommandToFile(command));
-                
+                    StackHandlerConsole stackHandler = new StackHandlerConsole(GlueCommandAndArgs(command),stack);
+                    stackHandler.Handle();
                     WriteArray(logger.Read());
                 }
             }

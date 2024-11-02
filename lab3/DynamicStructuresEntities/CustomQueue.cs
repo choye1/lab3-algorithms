@@ -43,6 +43,7 @@ namespace DynamicStructuresEntities
 
         public bool IsEmpty()
         {
+            logger.Write((values.Count == 0).ToString());
             return (values.Count == 0);
         }
 
