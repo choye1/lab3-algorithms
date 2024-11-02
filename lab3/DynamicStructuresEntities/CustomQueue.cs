@@ -50,19 +50,18 @@ namespace DynamicStructuresEntities
         {
             if (!IsEmpty())
             {
-                foreach (var item in values)
+                for(int i = 0 ; i < values.Count; i++)
                 {
-                    logger.Write($"{item}");
-
-                    if (values.IndexOf(item) == values.Count-1)
-                    {
-                        logger.WriteLine(". ");
-                    }
-
-                    else
+                    logger.Write($"{values[i]}");
+                    if (i !=  values.Count - 1)
                     {
                         logger.Write(", ");
                     }
+                    else
+                    {
+                        logger.Write(".");
+                    }
+
                 }
             }
         }

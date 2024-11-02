@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
@@ -29,6 +30,7 @@ namespace lab3
         }
 
 
+        CustomQueue<string> queue = new CustomQueue<string>();
 
         public void Main()
         {
@@ -37,12 +39,12 @@ namespace lab3
             string namefile = "a.txt"; //СЮДА ХУЯЧИМ ИМЯ ФАЙЛА, ИЗ КОТОРОГО ЧИТАЕМ ДАННЫЕ ДЛЯ КУЕУЕ
             string namefileForStack = "b.txt"; //СЮДА ХУЯЧИМ ИМЯ ФАЙЛА, ИЗ КОТОРОГО ЧИТАЕМ ДАННЫЕ ДЛЯ СТЕКА
 
-            float[] timeForGraphQueue = new QueueHandler(namefile).HandleFile();
+            //float[] timeForGraphQueue = new QueueHandler(namefile).HandleFile();
 
-            logger.WriteLine("^Queue^");
-            logger.WriteLine("\\/Stack\\/");
+            //logger.WriteLine("^Queue^");
+            //logger.WriteLine("\\/Stack\\/");
 
-            float[] timeForGraphStack = new StackHandler(namefileForStack).HandleFile();
+            //float[] timeForGraphStack = new StackHandler(namefileForStack).HandleFile();
 
             WriteArray(logger.Read());
 
@@ -50,46 +52,54 @@ namespace lab3
 
         private void Write(string str)
         {
-            tbConsole.Content += str;
+            tbConsole.Text += str;
         }
 
         private void WriteLine(string str)
         {
-            tbConsole.Content += str + "\n";
+            tbConsole.Text += str + "\n";
         }
 
         private void WriteArray(string[] arr)
         {
-            tbConsole.Content += "\n";
+            tbConsole.Text+= "";
 
             foreach(string i  in arr)
             {
-                tbConsole.Content += i + " " + "\n";
+                tbConsole.Text += i + " " + "\n";
             }
 
-            tbConsole.Content += "\n";
+            tbConsole.Text += "";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                Logger logger = new Logger();
+                logger.RemoveLogs();
+
                 string[] command = ParseCommand(tbCommand.Text); //Команда имеет следующую структуру: [stack/queue] command [args]
+
 
 
                 if (command[0] == "q")
                 {
-                    QueueHandler queueHandler = new QueueHandler(WriteCommandToFile(command));
+                    QueueHandlerConsole queueHandlerConsole = new QueueHandlerConsole(GlueCommandAndArgs(command), queue);
+                    queueHandlerConsole.Handle();
+                    WriteArray(logger.Read());
+
                 }
                 else if (command[0] == "s") 
                 {
-                    StackHandler stackHandler = new StackHandler(WriteCommandToFile(command));
+                    //StackHandler stackHandler = new StackHandler(WriteCommandToFile(command));
                 
+                    WriteArray(logger.Read());
                 }
             }
             catch (Exception ex) 
             {
-                tbConsole.Content = ex.Message;
+                tbConsole.Text = ex.Message;
             }
 
 
@@ -107,6 +117,8 @@ namespace lab3
             string addresseeCommand = args[0];
             string commandName = args[1];
             args[0] = string.Empty;
+            args[1] = string.Empty;
+
 
             switch (addresseeCommand)
             {
@@ -137,10 +149,10 @@ namespace lab3
             commandName = commandName.ToLower();
             switch (commandName)
             {
-                case ("push" or "add"):
-                    return "1";
+                case ("push" or "add" or "queue"):
+                    return "1,";
 
-                case ("pop" or "remove"):
+                case ("pop" or "remove" or "dequeue"):
                     return "2";
 
                 case ("top"):
@@ -152,7 +164,7 @@ namespace lab3
                 case("print"): 
                     return "5";
 
-                default: throw new Exception("Некорректный ввод, используйте комманды: push, pop, top, isEmpty, print.");
+                default: throw new Exception("Некорректный ввод, используйте комманды: push, pop, top, isEmpty, print, dequeue, queue, add, remove.");
             }
         }
 
@@ -175,6 +187,23 @@ namespace lab3
             File.WriteAllText(path, commandForWrite.ToString());
 
             return filename;
+        }
+        
+        private string[] GlueCommandAndArgs(string[] command) //Единственное, что делает этот метод - подгоняет синтаксис под "1,5341"
+        {
+            List<string> result = new List<string>();
+
+            if (command.Length > 2)
+            {
+                result.Add(command[1] + command[2]);
+            }
+
+            else
+            {
+                result.Add(command[1]);
+            }
+
+            return result.ToArray();
         }
     }
 }

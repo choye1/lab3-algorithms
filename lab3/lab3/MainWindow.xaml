@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Label x:Name="tbConsole" HorizontalAlignment="Left" Height="169" VerticalAlignment="Top" Width="780"/>
-        <TextBox x:Name="tbCommand" HorizontalAlignment="Left" Height="32" Margin="127,169,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="425"/>
-        <Label Content="Command:" HorizontalAlignment="Left" Height="32" Margin="10,169,0,0" VerticalAlignment="Top" Width="117"/>
-        <Button Content="Enter" HorizontalAlignment="Left" Height="32" Margin="557,169,0,0" VerticalAlignment="Top" Width="179" Click="Button_Click"/>
+        <TextBox x:Name="tbConsole" HorizontalAlignment="Left" IsReadOnly="True" Height="305" VerticalAlignment="Top" Width="780"/>
+        <TextBox x:Name="tbCommand" HorizontalAlignment="Left" Height="32" Margin="127,341,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="425"/>
+        <Label Content="Command:" HorizontalAlignment="Left" Height="32" Margin="10,341,0,0" VerticalAlignment="Top" Width="117"/>
+        <Button Content="Enter" HorizontalAlignment="Left" Height="32" Margin="557,341,0,0" VerticalAlignment="Top" Width="179" Click="Button_Click"/>
 
     </Grid>
 </Window>
