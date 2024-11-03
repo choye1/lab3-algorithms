@@ -12,20 +12,20 @@ namespace part4
         CustomQueue<T> queue = new CustomQueue<T>();
         int count = 0;
 
-        //public List<T> Insert2 (List<T> list, T val)
-        //{
-        //    foreach (var item in list)
-        //    {
-        //        count++;
-        //        queue.Enqueue(item);
-        //        if (item.Equals(val))
-        //        {
-        //            for (int i = count; i < list.Count; i++)
-        //            {
-
-        //            }
-        //        }
-        //    }
-        //}
+        public List<T> Insert2 (List<T> list, T val)
+        {
+            foreach (T item in list)
+            {
+                queue.Enqueue(item);
+                if (item.Equals(val))
+                {
+                    foreach( T item2 in list) 
+                    {
+                       queue.Enqueue((T)item2);
+                    }
+                }
+            }
+            return queue.GetQueue();
+        }
     }
 }
