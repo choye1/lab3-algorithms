@@ -89,24 +89,77 @@ namespace lab3
                     CommandHandler();
                 }
             }
-            catch { throw new Exception("Некорректный ввод."); }
+
+            catch(Exception ex) 
+            {
+                tbConsole.Text = "";
+                WriteLine(ex.Message);                
+            }
 
         }
 
         private void FourTaskHandler()
         {
-            int numberOfTask = int.Parse(tbCommand.Text.Split(",")[0]);
+            int numberOfTask = int.Parse(tbCommand.Text.Split(",")[0]);  //Лютый синтаксис: Номер задания,список значений;[строка х / число f; число g / Список значений 2]
             string args = tbCommand.Text.Split(",")[1];
+            args.Replace("; ", ";");
+            args.Replace(", ", ",");
+            
+            switch (numberOfTask)
+            {
+                case 1:
+                    WriteArray(new Task1<string>() { }.getNewList(RemoveProbels(args.Split(" ")).ToList()).ToArray());
+                    break;
+                case 2:
+                    WriteArray(new Task2<string>() { }.getNewList(RemoveProbels(args.Split(" ")).ToList()).ToArray());
+                    break;
+                case 3:
+                    WriteLine(new Task3<string>() { }.Counter(RemoveProbels(args.Split(" ")).ToList()).ToString());
+                    break;
+                case 4:
+                    WriteArray(new Task4<string>() { }.Counter(RemoveProbels(args.Split(" ")).ToList()).ToArray());
+                    break;
+                case 5:
+                    WriteArray(new Task5<string>() { }.Insert2(RemoveProbels(args.Split(";")[0].Split(" ")).ToList(), args.Split(";")[1].Replace(" ","")).ToArray());
+                    break;
+                case 6:
+                    WriteArray(new Task6<string>() { }.AddVal(args.Split(";")[0].Replace(" ", ""), RemoveProbels(args.Split(";")[1].Split(" ")).ToList()).ToArray());
+                    break;
+                case 7:
+                    WriteArray(new Task7<string>() { }.Deleter(RemoveProbels(args.Split(";")[0].Split(" ")).ToList(), args.Split(";")[1].Replace(" ", "")).ToArray());
+                    break;
+                case 8:
+                    WriteArray(new Task8<string>() { }.Inserter(RemoveProbels(args.Split(";")[0].Split(" ")).ToList(), args.Split(";")[1].Replace(" ", ""), args.Split(";")[2].Replace(" ", "")).ToArray());
+                    break;
+                case 9:
+                    WriteArray(new Task9<string>() { }.Unification(RemoveProbels(args.Split(";")[0].Split(" ")).ToList(), RemoveProbels(args.Split(";")[1].Split(" ")).ToList()).ToArray());
+                    break;
+                case 10:
+                    var result = new Task10<string>() { }.GetNewList(RemoveProbels(args.Split(";")[0].Split(" ")).ToList(), args.Split(";")[1].Replace(" ", "")).ToArray();
+                    WriteArray(result[0].ToArray());
+                    WriteArray(result[1].ToArray());
+                    break;
+                case 11:
+                    WriteArray(new Task11<string>() { }.Doubling(RemoveProbels(args.Split(" ")).ToList()).ToArray());
+                    break;
+                case 12:
+                    WriteArray(new Task12<string>() { }.Change(RemoveProbels(args.Split(";")[0].Split(" ")).ToList(), args.Split(";")[1].Replace(" ", ""), args.Split(";")[2].Replace(" ", "")).ToArray());
+                    break;
+                default:
+                    throw new Exception("НЕКОРРЕКТНЫЙ ВВОД!!! Используйте синтаксис: Номер задания, список значений; [строка х / число f; число g / Список значений 2] ");
 
-            part4.Task task = GetTask(numberOfTask);
-            task.
+            }
         }
 
-        private part4.Task GetTask(int numOfTask)
+        private string[] RemoveProbels(string[] probels)
         {
-
-            return new Task2<string>();
-        } 
+            List<string> result = new List<string>();
+            foreach (string probel in probels)
+            {
+                result.Add(probel.Replace(" ",""));
+            }
+            return result.ToArray();
+        }
 
 
         private void CommandHandler()
