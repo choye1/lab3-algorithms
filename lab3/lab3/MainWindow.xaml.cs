@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
@@ -15,6 +16,7 @@ using System.Windows.Shapes;
 using System.Xml;
 using DynamicStructuresEntities;
 using Loggers;
+using part4;
 
 namespace lab3
 {
@@ -63,9 +65,9 @@ namespace lab3
 
         private void WriteArray(string[] arr)
         {
-            tbConsole.Text+= "";
+            tbConsole.Text += "";
 
-            foreach(string i  in arr)
+            foreach (string i in arr)
             {
                 tbConsole.Text += i + " " + "\n";
             }
@@ -74,6 +76,40 @@ namespace lab3
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (ModesSelector.IsChecked == true)
+                {
+                    FourTaskHandler();
+
+                }
+                else
+                {
+                    CommandHandler();
+                }
+            }
+            catch { throw new Exception("Некорректный ввод."); }
+
+        }
+
+        private void FourTaskHandler()
+        {
+            int numberOfTask = int.Parse(tbCommand.Text.Split(",")[0]);
+            string args = tbCommand.Text.Split(",")[1];
+
+            part4.Task task = GetTask(numberOfTask);
+            task.
+        }
+
+        private part4.Task GetTask(int numOfTask)
+        {
+
+            return new Task2<string>();
+        } 
+
+
+        private void CommandHandler()
         {
             try
             {
@@ -91,21 +127,18 @@ namespace lab3
                     WriteArray(logger.Read());
 
                 }
-                else if (command[0] == "s") 
+                else if (command[0] == "s")
                 {
-                    StackHandlerConsole stackHandler = new StackHandlerConsole(GlueCommandAndArgs(command),stack);
+                    StackHandlerConsole stackHandler = new StackHandlerConsole(GlueCommandAndArgs(command), stack);
                     stackHandler.Handle();
                     WriteArray(logger.Read());
                 }
                 else { throw new Exception("Некорректный ввод, используйте синтаксис [queue/stack] command [args]"); }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 tbConsole.Text = ex.Message;
             }
-
-
-
         }
 
         private string[] ParseCommand(string command)
@@ -136,7 +169,7 @@ namespace lab3
 
             ParsedCommand.Add(GiveCodeOfCommand(commandName));
 
-            for(int i = 2; i < args.Length; i++)
+            for (int i = 2; i < args.Length; i++)
             {
                 if (args[i] != string.Empty)
                 {
@@ -164,7 +197,7 @@ namespace lab3
                 case ("isempty"):
                     return "4";
 
-                case("print"): 
+                case ("print"):
                     return "5";
 
                 default: throw new Exception("Некорректный ввод, используйте комманды: push, pop, top, isEmpty, print, dequeue, queue, add, remove.");
@@ -182,7 +215,7 @@ namespace lab3
             StringBuilder commandForWrite = new StringBuilder();
             foreach (string line in command)
             {
-                if(line == "q" || line == "s") continue;
+                if (line == "q" || line == "s") continue;
 
                 commandForWrite.AppendLine(line);
             }
@@ -191,7 +224,7 @@ namespace lab3
 
             return filename;
         }
-        
+
         private string[] GlueCommandAndArgs(string[] command) //Единственное, что делает этот метод - подгоняет синтаксис под "1,5341"
         {
             List<string> result = new List<string>();
@@ -228,11 +261,11 @@ namespace lab3
             WriteArray(logger.Read());
         }
 
-        private void WriteGraph(float[]times, string addreess)
+        private void WriteGraph(float[] times, string addreess)
         {
             List<float> dataX = new List<float>();
-            for(int i = 0; i < times.Length; i++) { dataX.Add((float)i); }
-            if(addreess == "queue")
+            for (int i = 0; i < times.Length; i++) { dataX.Add((float)i); }
+            if (addreess == "queue")
             {
                 GraphQueue.Plot.Add.Scatter(dataX.ToArray(), times);
                 GraphQueue.Plot.Axes.SetLimits(-1, dataX.Max() + 1, times.Min() - 2, times.Max() + 2);
@@ -250,12 +283,12 @@ namespace lab3
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            if(ModesSelector.IsChecked == true)
+            if (ModesSelector.IsChecked == true)
             {
                 ModesSelector.Content = ("4 часть. Используйте: [Номер задания], [Входные данные через пробел] ");
             }
 
-            else 
+            else
             {
                 ModesSelector.Content = ("Консоль. Используйте: [queue/stack] command [args] ");
             }

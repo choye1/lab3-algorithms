@@ -2,7 +2,7 @@
 
 namespace part4
 {
-    public class Task1<T>
+    public class Task1<T> 
     {
         CustomStack<T> stack = new CustomStack<T>();
         public List<T> getNewList (List<T> list)

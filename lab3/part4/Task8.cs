@@ -7,7 +7,7 @@ using DynamicStructuresEntities;
 
 namespace part4
 {
-    public class Task8<T>
+    public class Task8<T> 
     {
         CustomQueue<T> queue = new CustomQueue<T>();
         int eCount = 0;

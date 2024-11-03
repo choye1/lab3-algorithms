@@ -8,7 +8,7 @@ using DynamicStructuresEntities;
 
 namespace part4
 {
-    public class Task9<T>
+    public class Task9<T> 
     {
         CustomQueue<T> queue = new CustomQueue<T>();
 

@@ -13,7 +13,7 @@ namespace part4
         CustomQueue<T> queue2 = new CustomQueue<T>();
         int count = 0;
 
-        public List<T> Split(List<T> list, T val)
+        public List<T> GetNewList(List<T> list, T val) 
         {
             foreach (T item in list)
             {

@@ -7,7 +7,7 @@ using DynamicStructuresEntities;
 
 namespace part4
 {
-    public class Task3<T>
+    public class Task3<T> 
     {
         CustomStack<T> stack = new CustomStack<T>();
         int count = 0;
