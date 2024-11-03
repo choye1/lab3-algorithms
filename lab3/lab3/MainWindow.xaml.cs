@@ -247,5 +247,18 @@ namespace lab3
             }
 
         }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            if(ModesSelector.IsChecked == true)
+            {
+                ModesSelector.Content = ("4 часть. Используйте: [Номер задания], [Входные данные через пробел] ");
+            }
+
+            else 
+            {
+                ModesSelector.Content = ("Консоль. Используйте: [queue/stack] command [args] ");
+            }
+        }
     }
 }
