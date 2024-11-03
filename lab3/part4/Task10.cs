@@ -11,9 +11,10 @@ namespace part4
     {
         CustomQueue<T> queue1 = new CustomQueue<T>();
         CustomQueue<T> queue2 = new CustomQueue<T>();
+        List<T>[] result = new List<T>[2];
         int count = 0;
 
-        public List<T> GetNewList(List<T> list, T val) 
+        public List<T>[] GetNewList(List<T> list, T val) 
         {
             foreach (T item in list)
             {
@@ -36,7 +37,10 @@ namespace part4
                     }
                 }
             }
-            return queue1.GetQueue(); // тут надо как-то получить два списка
+            result[0] = queue1.GetQueue();
+            result[1] = queue2.GetQueue();
+
+            return result; 
         }
     }
 }
