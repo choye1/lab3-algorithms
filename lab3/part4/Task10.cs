@@ -16,24 +16,24 @@ namespace part4
 
         public List<T>[] GetNewList(List<T> list, T val) 
         {
-            foreach (T item in list)
+            for(int i = 0; i < list.Count; i++)
             {
                 count++;
-                if (!item.Equals(val))
+                if (!list[i].Equals(val))
                 {
-                    queue1.Enqueue(item);
+                    queue1.Enqueue(list[i]);
                 }
                 else
                 {
                     // проходим по оставшемуся списку и записываем элем-ты во вторую очередь
-                    for (int i = count; i < list.Count; i++)
+                    for (int j = count; j < list.Count; j++)
                     {
-                        queue2.Enqueue(list[i]);
+                        queue2.Enqueue(list[j]);
                     }
                     // проходим заново по оставшимся элем-там и удаляем их, чтобы они не записывались в первую очередь
-                    for (int i = count; i < list.Count; i++)
+                    for (int j = count; j < list.Count; j++)
                     {
-                        list.RemoveAt(i);
+                        list.RemoveAt(j);
                     }
                 }
             }
