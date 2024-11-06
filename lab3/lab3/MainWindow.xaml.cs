@@ -15,8 +15,11 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml;
 using DynamicStructuresEntities;
+using ListDynamicStructures;
 using Loggers;
 using part4;
+using StackHandlers;
+
 
 namespace lab3
 {

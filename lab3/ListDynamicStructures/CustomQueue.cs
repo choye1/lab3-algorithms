@@ -1,53 +1,53 @@
 ﻿using Loggers;
 
-namespace DynamicStructuresEntities
+namespace ListDynamicStructures
 {
-    public class CustomStack<T>
+    public class CustomQueue<T>
     {
         Logger logger = new Logger();
-
         private List<T> values = new List<T>();
 
-        public CustomStack(params T[] items)
+        public CustomQueue(params T[] items)
         {
             this.values.AddRange(items);
         }
 
-        public CustomStack()
+        public CustomQueue()
         {
         }
 
-        public void Push(T item)
+        public void Enqueue(T item)
         {
             values.Add(item);
         }
 
-        public T? Pop()
+        public T? Dequeue()
         {
             if (!IsEmpty1())
             {
-                T top = values[values.Count - 1];
-                values.RemoveAt(values.Count - 1);
+                T top = values[0];
+                values.RemoveAt(0);
                 return top;
             }
 
             return default;
         }
 
-        public T? Top()
+        public T? Peek()
         {
-            return !IsEmpty1() ? values[values.Count - 1] : default;
+            return !IsEmpty1() ? values[0] : default;
         }
-        public T? Peek() //Peek и Top это один и тот же метод но в лабе николаева он хочет Top а в шарпе используется конструкция Peek
+        public T? Top() // Top и Peek имеют одинаковую логику, выбирайте на свой вкус
         {
-            return !IsEmpty1() ? values[values.Count - 1] : default;
+            return !IsEmpty1() ? values[0] : default;
         }
 
         public bool IsEmpty()
         {
-            logger.Write((values.Count == 0).ToString());
+            logger.Write((values.Count == 0).ToString() + "\n");
             return (values.Count == 0);
         }
+
         public bool IsEmpty1()
         {
             return (values.Count == 0);
@@ -73,27 +73,11 @@ namespace DynamicStructuresEntities
                 logger.Write("\n");
             }
         }
-        public bool UniqueValue(T value)
-        {
-            foreach(var item in values)
-            {
-                if (item.Equals(value))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-        public List<T> GetStack()
+        public List<T> GetQueue()
         {
             return values;
         }
-
-        public int Count()
-        {
-            return values.Count;
-        }
-
     }
-
 }
+
+

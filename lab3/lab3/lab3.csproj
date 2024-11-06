@@ -14,10 +14,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DynamicStructuresEntities\DynamicStructuresEntities.csproj" />
+    <ProjectReference Include="..\LinkedListDynamicStructures\LinkedListDynamicStructures.csproj" />
+    <ProjectReference Include="..\ListDynamicStructures\ListDynamicStructures.csproj" />
     <ProjectReference Include="..\Logger\Logger.csproj" />
     <ProjectReference Include="..\part4\part4.csproj" />
+    <ProjectReference Include="..\QueueHandlers\QueueHandlers.csproj" />
     <ProjectReference Include="..\RPNEntities\RPNEntities.csproj" />
+    <ProjectReference Include="..\StackHandkers\StackHandlers.csproj" />
   </ItemGroup>
 
 </Project>
