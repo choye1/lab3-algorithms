@@ -31,6 +31,8 @@ namespace lab3
         public MainWindow()
         {
             InitializeComponent();
+            WindowForTasks windowForTasks = new WindowForTasks();
+            windowForTasks.Show();
             Main();
         }
 
@@ -40,6 +42,7 @@ namespace lab3
 
         public void Main()
         {
+           
             Logger logger = new Logger();
             logger.RemoveLogs();
             string namefile = "a.txt"; //СЮДА ХУЯЧИМ ИМЯ ФАЙЛА, ИЗ КОТОРОГО ЧИТАЕМ ДАННЫЕ ДЛЯ КУЕУЕ
