@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="WindowForTasks" Height="450" Width="800">
     <Grid>
-        <TextBox  Width="96"  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="NumberOfTask" Margin="19,34,0,0"/>
-        <TextBlock IsHitTestVisible="False" Text="Номер Задания" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="24,35,0,0" Foreground="DarkGray">
+        <TextBox  Width="96"  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="NumberOfTask" Margin="19,50,0,0"/>
+        <TextBlock IsHitTestVisible="False" Text="Номер Задания" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="24,51,0,0" Foreground="DarkGray">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -20,8 +20,8 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <TextBox  Width="250"  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="List1" Margin="124,34,0,0"/>
-        <TextBlock IsHitTestVisible="False" Text="Список 1" VerticalAlignment="Top" TextAlignment="Center" HorizontalAlignment="Left" Margin="137,35,0,0" Foreground="DarkGray" Width="224">
+        <TextBox  Width="250"  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="List1" Margin="124,50,0,0"/>
+        <TextBlock IsHitTestVisible="False" Text="Список 1" VerticalAlignment="Top" TextAlignment="Center" HorizontalAlignment="Left" Margin="137,51,0,0" Foreground="DarkGray" Width="224">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -33,8 +33,8 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <TextBox  Width="250"  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="List2" Margin="385,34,0,0"/>
-        <TextBlock IsHitTestVisible="False" Text="Список 2 / аргументы для задания." VerticalAlignment="Top" TextAlignment="Center" HorizontalAlignment="Left" Margin="398,35,0,0" Foreground="DarkGray" Width="224">
+        <TextBox  Width="250"  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="List2" Margin="385,50,0,0"/>
+        <TextBlock IsHitTestVisible="False" Text="Список 2 / аргументы для задания." VerticalAlignment="Top" TextAlignment="Center" HorizontalAlignment="Left" Margin="398,51,0,0" Foreground="DarkGray" Width="224">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -46,6 +46,8 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
+        <Button Content="Button" HorizontalAlignment="Left" Height="18" Margin="640,50,0,0" VerticalAlignment="Top" Width="139" Click="BtStart"/>
+        <Label Name ="LbOut" Content="Result" HorizontalAlignment="Left" Height="88" Margin="19,86,0,0" VerticalAlignment="Top" Width="616"/>
 
 
     </Grid>

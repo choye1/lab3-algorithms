@@ -114,42 +114,42 @@ namespace lab3
             switch (numberOfTask)
             {
                 case 1:
-                    WriteArray(new Task1<string>() { }.getNewList(RemoveProbels(args.Split(" ")).ToList()).ToArray());
+                    WriteArray(new Task1<string>() { }.GetResult(RemoveProbels(args.Split(" ")).ToList()).ToArray());
                     break;
                 case 2:
-                    WriteArray(new Task2<string>() { }.getNewList(RemoveProbels(args.Split(" ")).ToList()).ToArray());
+                    WriteArray(new Task2<string>() { }.GetResult(RemoveProbels(args.Split(" ")).ToList()).ToArray());
                     break;
                 case 3:
-                    WriteLine(new Task3<string>() { }.Counter(RemoveProbels(args.Split(" ")).ToList()).ToString());
+                    WriteLine(new Task3<string>() { }.GetResult(RemoveProbels(args.Split(" ")).ToList()).ToString());
                     break;
                 case 4:
-                    WriteArray(new Task4<string>() { }.Counter(RemoveProbels(args.Split(" ")).ToList()).ToArray());
+                    WriteArray(new Task4<string>() { }.GetResult(RemoveProbels(args.Split(" ")).ToList()).ToArray());
                     break;
                 case 5:
-                    WriteArray(new Task5<string>() { }.Insert2(RemoveProbels(args.Split(";")[0].Split(" ")).ToList(), args.Split(";")[1].Replace(" ","")).ToArray());
+                    WriteArray(new Task5<string>() { }.GetResult(RemoveProbels(args.Split(";")[0].Split(" ")).ToList(), args.Split(";")[1].Replace(" ","")).ToArray());
                     break;
                 case 6:
-                    WriteArray(new Task6<string>() { }.AddVal(args.Split(";")[0].Replace(" ", ""), RemoveProbels(args.Split(";")[1].Split(" ")).ToList()).ToArray());
+                    //WriteArray(new Task6<string>() { }.GetResult(args.Split(";")[0].Replace(" ", ""), RemoveProbels(args.Split(";")[1].Split(" ")).ToList()).ToArray());
                     break;
                 case 7:
-                    WriteArray(new Task7<string>() { }.Deleter(RemoveProbels(args.Split(";")[0].Split(" ")).ToList(), args.Split(";")[1].Replace(" ", "")).ToArray());
+                    WriteArray(new Task7<string>() { }.GetResult(RemoveProbels(args.Split(";")[0].Split(" ")).ToList(), args.Split(";")[1].Replace(" ", "")).ToArray());
                     break;
                 case 8:
-                    WriteArray(new Task8<string>() { }.Inserter(RemoveProbels(args.Split(";")[0].Split(" ")).ToList(), args.Split(";")[1].Replace(" ", ""), args.Split(";")[2].Replace(" ", "")).ToArray());
+                    WriteArray(new Task8<string>() { }.GetResult(RemoveProbels(args.Split(";")[0].Split(" ")).ToList(), args.Split(";")[1].Replace(" ", ""), args.Split(";")[2].Replace(" ", "")).ToArray());
                     break;
                 case 9:
-                    WriteArray(new Task9<string>() { }.Unification(RemoveProbels(args.Split(";")[0].Split(" ")).ToList(), RemoveProbels(args.Split(";")[1].Split(" ")).ToList()).ToArray());
+                    WriteArray(new Task9<string>() { }.GetResult(RemoveProbels(args.Split(";")[0].Split(" ")).ToList(), RemoveProbels(args.Split(";")[1].Split(" ")).ToList()).ToArray());
                     break;
                 case 10:
-                    var result = new Task10<string>() { }.GetNewList(RemoveProbels(args.Split(";")[0].Split(" ")).ToList(), args.Split(";")[1].Replace(" ", "")).ToArray();
+                    var result = new Task10<string>() { }.GetResult(RemoveProbels(args.Split(";")[0].Split(" ")).ToList(), args.Split(";")[1].Replace(" ", "")).ToArray();
                     WriteArray(result[0].ToArray());
                     WriteArray(result[1].ToArray());
                     break;
                 case 11:
-                    WriteArray(new Task11<string>() { }.Doubling(RemoveProbels(args.Split(" ")).ToList()).ToArray());
+                    WriteArray(new Task11<string>() { }.GetResult(RemoveProbels(args.Split(" ")).ToList()).ToArray());
                     break;
                 case 12:
-                    WriteArray(new Task12<string>() { }.Change(RemoveProbels(args.Split(";")[0].Split(" ")).ToList(), args.Split(";")[1].Replace(" ", ""), args.Split(";")[2].Replace(" ", "")).ToArray());
+                    WriteArray(new Task12<string>() { }.GetResult(RemoveProbels(args.Split(";")[0].Split(" ")).ToList(), args.Split(";")[1].Replace(" ", ""), args.Split(";")[2].Replace(" ", "")).ToArray());
                     break;
                 default:
                     throw new Exception("НЕКОРРЕКТНЫЙ ВВОД!!! Используйте синтаксис: Номер задания, список значений; [строка х / число f; число g / Список значений 2] ");

@@ -12,7 +12,7 @@ namespace part4
     {
         CustomQueue<T> queue = new CustomQueue<T>();
 
-        public List<T> Deleter (List<T> list, T val)
+        public List<T> GetResult (List<T> list, T val)
         {
             foreach (T item in list)
             {

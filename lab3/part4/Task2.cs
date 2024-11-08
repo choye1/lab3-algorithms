@@ -13,7 +13,7 @@ namespace part4
         CustomQueue<T> queue = new CustomQueue<T>();
         CustomStack<T> stack = new CustomStack<T>();
 
-        public List<T> getNewList(List<T> list)
+        public List<T> GetResult(List<T> list)
         {
             List<T> result = new List<T>();
             

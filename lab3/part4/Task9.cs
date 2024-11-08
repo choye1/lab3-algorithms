@@ -13,7 +13,7 @@ namespace part4
     {
         CustomQueue<T> queue = new CustomQueue<T>();
 
-        public List<T> Unification(List<T> list1, List<T> list2)
+        public List<T> GetResult(List<T> list1, List<T> list2)
         {
             foreach (T item in list1)
             {
