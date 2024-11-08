@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
+using RPNEntities;
 using System.Threading.Tasks;
 using System.Windows;
 using part4;
@@ -40,7 +41,7 @@ namespace lab3
                 Write(result);
             }
 
-            catch 
+            catch
             {
                 throw new Exception("Некорректный ввод");
             }
@@ -125,7 +126,7 @@ namespace lab3
         {
             List<string> result = new List<string>();
             var res = new Task10<string>() { }.GetResult(array1, val);
-            foreach(var r  in res)
+            foreach (var r in res)
             {
                 foreach (var s in r)
                 {
@@ -140,9 +141,9 @@ namespace lab3
 
         private void Write(List<string> list)
         {
-            TbOut.Text+= "Result:\n";
+            TbOut.Text += "Result:\n";
 
-            foreach(var s in list)
+            foreach (var s in list)
             {
                 TbOut.Text += s + " ";
             }
@@ -152,6 +153,21 @@ namespace lab3
 
         }
 
+        private void BtStartRPN(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string expression = tbRpnIn.Text;
+                RPNHandler rh = new RPNHandler(expression);
+                string rpn = rh.GetRPN();
+                string result = rh.GetResult().ToString();
+                TbOut.Text = "Result: " + result + "\nRPN:" + rpn;
+            }
+            catch (Exception ex) 
+            {
+                TbOut.Text = ex.Message;
+            }
 
+        }
     }
 }
