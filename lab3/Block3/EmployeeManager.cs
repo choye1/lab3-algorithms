@@ -8,21 +8,50 @@ namespace OrganizationApp
 {
     public class EmployeeManager
     {
-        private Employee root;
+        public Employee CEO { get; private set; }
 
-        public EmployeeManager(Employee ceo)
+        public void SetCEO(Employee ceo)
         {
-            root = ceo;
+            if (CEO == null)
+            {
+                CEO = ceo;
+            }
+            else
+            {
+                throw new InvalidOperationException("CEO уже установлен.");
+            }
         }
 
-        // Поиск сотрудника по имени
+        public bool AddEmployee(string managerName, Employee newEmployee)
+        {
+            var manager = FindEmployee(managerName);
+            if (manager != null)
+            {
+                manager.AddSubordinate(newEmployee);
+                return true;
+            }
+            return false;
+        }
+
+        public bool RemoveEmployee(string employeeName)
+        {
+            var employee = FindEmployee(employeeName);
+            if (employee != null && employee.Manager != null)
+            {
+                employee.Manager.RemoveSubordinate(employee);
+                return true;
+            }
+            return false;
+        }
+
         public Employee FindEmployee(string name)
         {
-            return FindEmployeeRecursive(root, name);
+            return FindEmployeeRecursive(CEO, name);
         }
 
         private Employee FindEmployeeRecursive(Employee employee, string name)
         {
+            if (employee == null) return null;
             if (employee.Name == name)
                 return employee;
 
@@ -35,28 +64,29 @@ namespace OrganizationApp
             return null;
         }
 
-        // Добавление сотрудника к менеджеру
-        public bool AddEmployee(string managerName, Employee newEmployee)
+        public List<Employee> SearchEmployees(string name, double? salary, string position)
         {
-            var manager = FindEmployee(managerName);
-            if (manager != null)
-            {
-                manager.AddSubordinate(newEmployee);
-                return true;
-            }
-            return false;
+            List<Employee> results = new List<Employee>();
+            SearchEmployeesRecursive(CEO, name, salary, position, results);
+            return results;
         }
 
-        // Удаление сотрудника
-        public bool RemoveEmployee(string employeeName)
+        private void SearchEmployeesRecursive(Employee employee, string name, double? salary, string position, List<Employee> results)
         {
-            var employee = FindEmployee(employeeName);
-            if (employee != null && employee.Manager != null)
+            if (employee == null) return;
+
+            if ((string.IsNullOrEmpty(name) || employee.Name.Contains(name, StringComparison.OrdinalIgnoreCase)) &&
+                (!salary.HasValue || employee.Salary == salary.Value) &&
+                (string.IsNullOrEmpty(position) || employee.Position.Equals(position, StringComparison.OrdinalIgnoreCase)))
             {
-                employee.Manager.RemoveSubordinate(employee);
-                return true;
+                results.Add(employee);
             }
-            return false;
+
+            foreach (var subordinate in employee.Subordinates)
+            {
+                SearchEmployeesRecursive(subordinate, name, salary, position, results);
+            }
         }
     }
+
 }

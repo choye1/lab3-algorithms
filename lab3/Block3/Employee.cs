@@ -3,22 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace OrganizationApp
 {
     public class Employee
     {
         public string Name { get; set; }
-        public string Position { get; set; } // Должность сотрудника
         public double Salary { get; set; }
+        public string Position { get; set; }
         public Employee Manager { get; set; }
         public List<Employee> Subordinates { get; private set; }
 
-        public Employee(string name, string position, double salary)
+        public Employee(string name, double salary, string position)
         {
             Name = name;
-            Position = position;
             Salary = salary;
+            Position = position;
+            Subordinates = new List<Employee>();
+        }
+
+        public Employee(string name)
+        {
+            Name = name;
             Subordinates = new List<Employee>();
         }
 
@@ -42,6 +49,11 @@ namespace OrganizationApp
                 totalSalary += subordinate.CalculateTotalSalary();
             }
             return totalSalary;
+        }
+
+        public override string ToString()
+        {
+            return $"{Name} - {Position} - ${Salary}";
         }
     }
 

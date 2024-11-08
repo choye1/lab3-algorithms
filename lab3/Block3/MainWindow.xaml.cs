@@ -1,170 +1,134 @@
 ﻿using System;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Shapes;
-using System.Collections.Generic;
-using QuickGraph;
 
 namespace OrganizationApp
 {
     public partial class MainWindow : Window
     {
-        private EmployeeGraph employeeGraph;
+        private EmployeeManager employeeManager;
 
         public MainWindow()
         {
             InitializeComponent();
-            employeeGraph = new EmployeeGraph();
+            employeeManager = new EmployeeManager();
+        }
+
+        private void DisplayTree()
+        {
+            EmployeeTreeView.Items.Clear();
+            if (employeeManager.CEO != null)
+            {
+                EmployeeTreeView.Items.Add(CreateTreeItem(employeeManager.CEO));
+            }
+        }
+
+        private TreeViewItem CreateTreeItem(Employee employee)
+        {
+            var item = new TreeViewItem { Header = employee.ToString() };
+            foreach (var subordinate in employee.Subordinates)
+            {
+                item.Items.Add(CreateTreeItem(subordinate));
+            }
+            return item;
         }
 
         private void AddEmployeeButton_Click(object sender, RoutedEventArgs e)
         {
             string name = NameTextBox.Text;
-            string position = PositionTextBox.Text;
             string managerName = ManagerTextBox.Text;
+            string position = PositionTextBox.Text;
 
-            if (double.TryParse(SalaryTextBox.Text, out double salary))
+            if (!double.TryParse(SalaryTextBox.Text, out double salary))
             {
-                var employee = new Employee(name, position, salary);
-                employeeGraph.AddEmployee(employee);
+                MessageBox.Show("Введите корректную зарплату.");
+                return;
+            }
 
-                if (!string.IsNullOrEmpty(managerName))
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(position))
+            {
+                MessageBox.Show("Имя и должность сотрудника обязательны.");
+                return;
+            }
+
+            var newEmployee = new Employee(name, salary, position);
+            if (string.IsNullOrEmpty(managerName))
+            {
+                try
                 {
-                    var manager = employeeGraph.FindEmployee(managerName);
-                    if (manager != null)
-                    {
-                        employeeGraph.AddSubordinate(manager, employee);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Менеджер не найден!");
-                    }
+                    employeeManager.SetCEO(newEmployee);
+                    DisplayTree();
                 }
-
-                DrawGraph();
+                catch (InvalidOperationException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else if (employeeManager.AddEmployee(managerName, newEmployee))
+            {
+                DisplayTree();
+            }
+            else
+            {
+                MessageBox.Show("Менеджер не найден!");
             }
         }
 
-        private void ClearGraphButton_Click(object sender, RoutedEventArgs e)
+        private void RemoveEmployeeButton_Click(object sender, RoutedEventArgs e)
         {
-            employeeGraph = new EmployeeGraph();
-            GraphCanvas.Children.Clear();
+            string name = NameTextBox.Text;
+            if (employeeManager.RemoveEmployee(name))
+            {
+                DisplayTree();
+            }
+            else
+            {
+                MessageBox.Show("Сотрудник не найден или не может быть удален.");
+            }
         }
 
-        private void SearchEmployeeButton_Click(object sender, RoutedEventArgs e)
+        private void CalculateSalaryButton_Click(object sender, RoutedEventArgs e)
         {
-            string name = SearchTextBox.Text;
-            var employee = employeeGraph.FindEmployee(name);
-
+            string name = NameTextBox.Text;
+            var employee = employeeManager.FindEmployee(name);
             if (employee != null)
             {
-                HighlightEmployeeNode(employee);
-                double totalSalary = employeeGraph.CalculateTotalSalary(employee);
-                SalaryOutputTextBox.Text = totalSalary.ToString("C");
+                double totalSalary = employee.CalculateTotalSalary();
+                MessageBox.Show($"Общая зарплата {employee.Name}: ${totalSalary}");
             }
             else
             {
                 MessageBox.Show("Сотрудник не найден!");
-                SalaryOutputTextBox.Clear();
             }
         }
 
-        private void DrawGraph()
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            GraphCanvas.Children.Clear();
+            string name = SearchNameTextBox.Text;
+            string position = SearchPositionTextBox.Text;
 
-            double centerX = GraphCanvas.ActualWidth / 2;
-            double startY = 50;
-            double yStep = 100;
-
-            var rootNodes = employeeGraph.Graph.Vertices
-                .Where(v => !employeeGraph.Graph.Edges.Any(e => e.Target.Equals(v))).ToList();
-
-            int level = 0;
-            foreach (var rootNode in rootNodes)
+            double? salary = null;
+            if (double.TryParse(SearchSalaryTextBox.Text, out double parsedSalary))
             {
-                DrawSubtree(rootNode, centerX, startY + level * yStep, 300, 100);
-                level++;
+                salary = parsedSalary;
             }
+
+            var results = employeeManager.SearchEmployees(name, salary, position);
+            DisplaySearchResults(results);
         }
 
-        private void DrawSubtree(Employee node, double x, double y, double xStep, double yStep)
+        private void DisplaySearchResults(List<Employee> employees)
         {
-            var position = new Point(x, y);
-            DrawEmployeeNode(node, position);
-
-            var edges = employeeGraph.Graph.OutEdges(node);
-            int childCount = edges.Count();
-            double childXOffset = -((childCount - 1) / 2.0) * xStep;
-
-            foreach (var edge in edges)
+            SearchResultsListBox.Items.Clear();
+            foreach (var employee in employees)
             {
-                var childPosition = new Point(x + childXOffset, y + yStep);
-                DrawEmployeeNode(edge.Target, childPosition);
-                DrawEdge(position, childPosition);
-                childXOffset += xStep;
-                DrawSubtree(edge.Target, childPosition.X, childPosition.Y, xStep / 2, yStep);
+                SearchResultsListBox.Items.Add(employee.ToString());
             }
-        }
-
-        private void DrawEmployeeNode(Employee employee, Point position)
-        {
-            Ellipse node = new Ellipse
+            if (employees.Count == 0)
             {
-                Width = 100,
-                Height = 50,
-                Fill = Brushes.LightBlue,
-                Stroke = Brushes.Black,
-                StrokeThickness = 2
-            };
-
-            Canvas.SetLeft(node, position.X - node.Width / 2);
-            Canvas.SetTop(node, position.Y);
-            GraphCanvas.Children.Add(node);
-
-            TextBlock text = new TextBlock
-            {
-                Text = employee.ToString(),
-                FontSize = 12,
-                TextAlignment = TextAlignment.Center
-            };
-            Canvas.SetLeft(text, position.X - node.Width / 2 + 5);
-            Canvas.SetTop(text, position.Y + 15);
-            GraphCanvas.Children.Add(text);
-        }
-
-        private void DrawEdge(Point from, Point to)
-        {
-            Line line = new Line
-            {
-                X1 = from.X,
-                Y1 = from.Y + 25,
-                X2 = to.X,
-                Y2 = to.Y - 25,
-                Stroke = Brushes.Black,
-                StrokeThickness = 1
-            };
-            GraphCanvas.Children.Add(line);
-        }
-
-        private void HighlightEmployeeNode(Employee employee)
-        {
-            DrawGraph();  // Перерисовываем граф
-            foreach (var element in GraphCanvas.Children.OfType<Ellipse>())
-            {
-                TextBlock text = (TextBlock)GraphCanvas.Children
-                    .OfType<TextBlock>()
-                    .FirstOrDefault(tb => tb.Text.Contains(employee.Name));
-
-                if (text != null && Canvas.GetLeft(element) == Canvas.GetLeft(text) - 5 &&
-                    Canvas.GetTop(element) == Canvas.GetTop(text) - 15)
-                {
-                    element.Stroke = Brushes.Red;
-                    element.StrokeThickness = 3;
-                }
+                SearchResultsListBox.Items.Add("Сотрудники не найдены.");
             }
         }
     }
+
 }
