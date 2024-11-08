@@ -14,6 +14,63 @@ namespace DynamicStructuresEntities
         {
             head = null;
         }
+        // Индексация для получения элемента по индексу
+        public T this[int index]
+        {
+            get { return GetAt(index); }
+        }
+
+        // Метод для получения элемента по индексу
+        public T GetAt(int index)
+        {
+            if (index < 0)
+                throw new ArgumentOutOfRangeException(nameof(index), "Index cannot be negative.");
+
+            var current = head;
+            int currentIndex = 0;
+
+            while (current != null)
+            {
+                if (currentIndex == index)
+                    return current.Data;
+
+                current = current.Next;
+                currentIndex++;
+            }
+
+            throw new ArgumentOutOfRangeException(nameof(index), "Index was out of range.");
+        }
+
+        public void RemoveAt(int index)
+        {
+            if (index < 0)
+                throw new ArgumentOutOfRangeException(nameof(index), "Index cannot be negative.");
+
+            if (head == null)
+                throw new InvalidOperationException("The list is empty.");
+
+            if (index == 0) // Удаляем первый элемент (голову)
+            {
+                head = head.Next;
+                return;
+            }
+
+            // Находим предыдущий элемент
+            var current = head;
+            int currentIndex = 0;
+
+            while (current != null && currentIndex < index - 1)
+            {
+                current = current.Next;
+                currentIndex++;
+            }
+
+            if (current == null || current.Next == null)
+                throw new ArgumentOutOfRangeException(nameof(index), "Index was out of range.");
+
+            // Переподключаем ссылки, исключая элемент с заданным индексом
+            current.Next = current.Next.Next;
+        }
 
         // Добавление элемента в начало списка (для стека)
         public void AddFirst(T data)

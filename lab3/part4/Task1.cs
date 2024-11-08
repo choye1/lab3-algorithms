@@ -7,6 +7,7 @@ namespace part4
     {
         LinkedListStack<T> stack = new LinkedListStack<T>();
         System.Collections.Generic.LinkedList<T> newList;
+         
         public System.Collections.Generic.LinkedList<T> GetResult (System.Collections.Generic.LinkedList<T> list)
         {
             foreach (var item in list)
@@ -15,7 +16,7 @@ namespace part4
             }
             for (int i = 0; i < list.Count; i++)
             {
-                newList.Add(stack.Pop());
+                newList.AddLast(stack.Pop());
             }
             
             return newList;
