@@ -6,15 +6,15 @@ namespace part4
     public class Task1<T> 
     {
         LinkedListStack<T> stack = new LinkedListStack<T>();
-        System.Collections.Generic.LinkedList<T> newList;
+        DynamicStructuresEntities.LinkedList<T> newList = new DynamicStructuresEntities.LinkedList<T>();
          
-        public System.Collections.Generic.LinkedList<T> GetResult (System.Collections.Generic.LinkedList<T> list)
+        public DynamicStructuresEntities.LinkedList<T> GetResult (DynamicStructuresEntities.LinkedList<T> list)
         {
-            foreach (var item in list)
-            {   
-                stack.Push(item);
+            for (int i = 0; i < list.Count(); i++)
+            {
+                stack.Push(list[i]);
             }
-            for (int i = 0; i < list.Count; i++)
+            for (int i = 0; i < list.Count(); i++)
             {
                 newList.AddLast(stack.Pop());
             }

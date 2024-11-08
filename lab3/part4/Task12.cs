@@ -10,26 +10,26 @@ namespace part4
 {
     public class Task12<T> 
     {
-        CustomQueue<T> queue = new CustomQueue<T>();
+        LinkedListQueue<T> queue = new LinkedListQueue<T>();
 
-        public List<T> GetResult (List<T> list, T x, T y)
+        public DynamicStructuresEntities.LinkedList<T> GetResult (DynamicStructuresEntities.LinkedList<T> list, T x, T y)
         {
-            foreach (var item in list)
+            for (int i = 0; i < list.Count(); i++)
             {
-                if (item.Equals(x))
+                if (list[i].Equals(x))
                 {
                     queue.Enqueue(y);
                 }
-                else if (item.Equals(y))
+                else if (list[i].Equals(y))
                 {
                     queue.Enqueue(x);
                 }
                 else
                 {
-                    queue.Enqueue(item);
+                    queue.Enqueue(list[i]);
                 }
             }
-            return queue.GetQueue();
+            return queue.LLGetQueue();
         }
     }
 }

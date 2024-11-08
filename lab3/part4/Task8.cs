@@ -10,11 +10,11 @@ namespace part4
 {
     public class Task8<T> 
     {
-        CustomQueue<T> queue = new CustomQueue<T>();
+        LinkedListQueue<T> queue = new LinkedListQueue<T>();
         int eCount = 0;
-        public List<T> GetResult(List<T> list, T f, T e)
+        public DynamicStructuresEntities.LinkedList<T> GetResult(DynamicStructuresEntities.LinkedList<T> list, T f, T e)
         {
-            for (int i = 0; i < list.Count; i++) 
+            for (int i = 0; i < list.Count(); i++) 
             {
                 if (list[i+1].Equals(e) && eCount == 0)
                 {
@@ -25,7 +25,7 @@ namespace part4
                 }
                 queue.Enqueue(list[i]);
             }
-            return queue.GetQueue();
+            return queue.LLGetQueue();
         }
     }
 }

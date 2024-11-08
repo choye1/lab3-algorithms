@@ -11,19 +11,19 @@ namespace part4
 {
     public class Task9<T> 
     {
-        CustomQueue<T> queue = new CustomQueue<T>();
+        LinkedListQueue<T> queue = new LinkedListQueue<T>();
 
-        public List<T> GetResult(List<T> list1, List<T> list2)
+        public DynamicStructuresEntities.LinkedList<T> GetResult(DynamicStructuresEntities.LinkedList<T> list1, DynamicStructuresEntities.LinkedList<T> list2)
         {
-            foreach (T item in list1)
+            for (int i = 0; i < list1.Count(); i++)
             {
-                queue.Enqueue(item);
+                queue.Enqueue(list1[i]);
             }
-            foreach (T item in list2)
+            for (int i = 0; i < list2.Count(); i++)
             {
-                queue.Enqueue(item);
+                queue.Enqueue(list2[i]);
             }
-            return queue.GetQueue();
+            return queue.LLGetQueue();
         }
     }
 }

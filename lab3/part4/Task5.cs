@@ -10,23 +10,23 @@ namespace part4
 {
     public class Task5<T> 
     {
-        CustomQueue<T> queue = new CustomQueue<T>();
+        LinkedListQueue<T> queue = new LinkedListQueue<T>();
         int count = 0;
 
-        public List<T> GetResult (List<T> list, T val)
+        public DynamicStructuresEntities.LinkedList<T> GetResult (DynamicStructuresEntities.LinkedList<T> list, T val)
         {
-            foreach (T item in list)
+            for (int i = 0; i < list.Count(); i++)
             {
-                queue.Enqueue(item);
-                if (item.Equals(val))
+                queue.Enqueue(list[i]);
+                if (list[i].Equals(val))
                 {
-                    foreach( T item2 in list) 
+                    for (int j = 0; j < list.Count(); j++)
                     {
-                       queue.Enqueue((T)item2);
+                        queue.Enqueue((T)list[j]);
                     }
                 }
             }
-            return queue.GetQueue();
+            return queue.LLGetQueue();
         }
     }
 }

@@ -10,22 +10,22 @@ namespace part4
 {
     public class Task4<T> 
     {
-        CustomStack<T> stack = new CustomStack<T>();
+        LinkedListStack<T> stack = new LinkedListStack<T>();
         int count = 0;
 
-        public List<T> GetResult(List<T> list)
+        public DynamicStructuresEntities.LinkedList<T> GetResult(DynamicStructuresEntities.LinkedList<T> list)
         {
-            foreach (var item in list)
+            for (int i = 0; i < list.Count(); i++)
             {
-                stack.Push(item);
+                stack.Push(list[i]);
 
-                if (!stack.UniqueValue(item))
+                if (!stack.UniqueValue(list[i]))
                 {
                     stack.Pop();
                 }
             }
 
-            return stack.GetStack();
+            return stack.LLGetStack();
         }
     }
 }

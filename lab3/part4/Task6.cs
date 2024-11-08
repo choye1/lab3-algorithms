@@ -10,9 +10,9 @@ namespace part4
 {
     public class Task6<T>  where T : IComparable<T>
     {
-        CustomQueue<T> queue = new CustomQueue<T>();
+        LinkedListQueue<T> queue = new LinkedListQueue<T>();
 
-        public List<T> GetResult (List<T> list, T val)
+        public DynamicStructuresEntities.LinkedList<T> GetResult (DynamicStructuresEntities.LinkedList<T> list, T val)
         {
             for (int i = 0; i < list.Count(); i++)
             {
@@ -23,7 +23,7 @@ namespace part4
                 }
                 queue.Enqueue(list[i]);
             }
-            return queue.GetQueue();
+            return queue.LLGetQueue();
         }
     }
 }

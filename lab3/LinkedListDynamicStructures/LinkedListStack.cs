@@ -84,6 +84,11 @@ namespace DynamicStructuresEntities
             return values;
         }
 
+        public LinkedList<T> LLGetStack()
+        {
+            return list;
+        }
+
         public int Count()
         {
             int count = 0;

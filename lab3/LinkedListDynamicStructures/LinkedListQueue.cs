@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DynamicStructuresEntities
 {
-    public class Queue<T>
+    public class LinkedListQueue<T>
     {
         private LinkedList<T> list = new LinkedList<T>();
         Logger logger = new Logger();
@@ -21,7 +21,14 @@ namespace DynamicStructuresEntities
         // Удаление элемента из очереди
         public T Dequeue()
         {
-            return list.RemoveFirst();
+            if (!IsEmpty())
+            {
+                T top = list[0];
+                list.RemoveAt(0);
+                return top;
+            }
+
+            return default;
         }
 
         // Получение элемента из начала очереди
@@ -71,6 +78,10 @@ namespace DynamicStructuresEntities
                 list.AddLast(tempList.RemoveFirst());
             }
             return values;
+        }
+        public LinkedList<T> LLGetQueue() 
+        {
+            return list;
         }
     }
 }

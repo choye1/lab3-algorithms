@@ -10,24 +10,25 @@ namespace part4
 {
     public class Task2<T> 
     {
-        CustomQueue<T> queue = new CustomQueue<T>();
-        CustomStack<T> stack = new CustomStack<T>();
+        LinkedListQueue<T> queue = new LinkedListQueue<T>();
+        LinkedListStack<T> stack = new LinkedListStack<T>();
 
-        public List<T> GetResult(List<T> list)
+        public DynamicStructuresEntities.LinkedList<T> GetResult(DynamicStructuresEntities.LinkedList<T> list)
         {
-            List<T> result = new List<T>();
+            DynamicStructuresEntities.LinkedList<T> result = new DynamicStructuresEntities.LinkedList<T>();
             
-            foreach (var item in list)
+            for (int i = 0; i < list.Count(); i++)
             {
-                queue.Enqueue(item);
+                queue.Enqueue(list[i]);
             }
 
             T buffer = queue.Dequeue();
-            while (!queue.IsEmpty())
+
+            foreach (var item in queue.GetQueue())
             {
-                result.Add(queue.Top());
+                result.AddLast(item);
             }
-            result.Add(buffer);
+            result.AddLast(buffer);
             
             return result;
         }
