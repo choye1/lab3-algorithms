@@ -21,7 +21,14 @@ namespace DynamicStructuresEntities
         // Удаление элемента из стека
         public T Pop()
         {
-            return list.RemoveFirst();
+            if (!IsEmpty())
+            {
+                T top = list[list.Count() - 1];
+                list.RemoveAt(list.Count() - 1); 
+                return top;
+            }
+
+            return default;
         }
 
         // Получение верхнего элемента

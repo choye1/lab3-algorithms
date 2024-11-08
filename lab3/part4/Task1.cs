@@ -5,9 +5,9 @@ namespace part4
 {
     public class Task1<T> 
     {
-        CustomStack<T> stack = new CustomStack<T>();
-        List<T> newList;
-        public List<T> GetResult (List<T> list)
+        LinkedListStack<T> stack = new LinkedListStack<T>();
+        System.Collections.Generic.LinkedList<T> newList;
+        public System.Collections.Generic.LinkedList<T> GetResult (System.Collections.Generic.LinkedList<T> list)
         {
             foreach (var item in list)
             {   

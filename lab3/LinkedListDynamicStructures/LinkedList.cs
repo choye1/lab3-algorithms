@@ -68,6 +68,18 @@ namespace DynamicStructuresEntities
 
             return head.Data;
         }
+        public int Count()
+        {
+            int count = 0;
+            var current = head;
+            while (current != null)
+            {
+                count++;
+                current = current.Next;
+            }
+            return count;
+        }
+
     }
 
 }
