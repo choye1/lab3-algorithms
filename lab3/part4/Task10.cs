@@ -15,7 +15,7 @@ namespace part4
         List<T>[] result = new List<T>[2];
         int count = 0;
 
-        public List<T>[] GetNewList(List<T> list, T val) 
+        public List<T>[] GetResult(List<T> list, T val) 
         {
             foreach (T item in list)
             {

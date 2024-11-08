@@ -13,7 +13,7 @@ namespace part4
         CustomQueue<T> queue = new CustomQueue<T>();
         int count = 0;
 
-        public List<T> Insert2 (List<T> list, T val)
+        public List<T> GetResult (List<T> list, T val)
         {
             foreach (T item in list)
             {

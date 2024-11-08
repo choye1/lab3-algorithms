@@ -13,7 +13,7 @@ namespace part4
         CustomStack<T> stack = new CustomStack<T>();
         int count = 0;
 
-        public int Counter(List<T> list)
+        public int GetResult(List<T> list)
         {
             foreach (var item in list)
             {

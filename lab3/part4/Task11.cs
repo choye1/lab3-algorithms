@@ -12,7 +12,7 @@ namespace part4
     {
         CustomQueue<T> queue = new CustomQueue<T>();
 
-        public List<T> Doubling(List<T> list)
+        public List<T> GetResult(List<T> list)
         {
             foreach (T item in list)
             {

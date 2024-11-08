@@ -12,7 +12,7 @@ namespace part4
     {
         CustomQueue<T> queue = new CustomQueue<T>();
 
-        public List<T> AddVal (T val, List<T> list)
+        public List<T> GetResult (List<T> list, T val)
         {
             for (int i = 0; i < list.Count(); i++)
             {

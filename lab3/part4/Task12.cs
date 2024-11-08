@@ -12,7 +12,7 @@ namespace part4
     {
         CustomQueue<T> queue = new CustomQueue<T>();
 
-        public List<T> Change (List<T> list, T x, T y)
+        public List<T> GetResult (List<T> list, T x, T y)
         {
             foreach (var item in list)
             {
