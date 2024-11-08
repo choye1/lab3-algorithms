@@ -46,8 +46,24 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <Button Content="Button" HorizontalAlignment="Left" Height="18" Margin="640,50,0,0" VerticalAlignment="Top" Width="139" Click="BtStart"/>
-        <Label Name ="LbOut" Content="Result" HorizontalAlignment="Left" Height="88" Margin="19,86,0,0" VerticalAlignment="Top" Width="616"/>
+        <Button Content="Button" HorizontalAlignment="Left" Height="18" Margin="640,50,0,0" VerticalAlignment="Top" Width="139" Click="BtStartFourPart"/>
+        <TextBox Name ="TbOut" HorizontalAlignment="Left" Height="131" Margin="19,86,0,0" VerticalAlignment="Top" Width="616" IsReadOnly="True"/>
+        <TextBox  Width="250"  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="RpnVar" Margin="176,294,0,0"/>
+        <TextBlock IsHitTestVisible="False" Text="Выражение для RPN" VerticalAlignment="Top" TextAlignment="Center" HorizontalAlignment="Left" Margin="189,294,0,0" Foreground="DarkGray" Width="217" Height="18">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=List1}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <Button Content="Button" HorizontalAlignment="Left" Height="18" Margin="457,294,0,0" VerticalAlignment="Top" Width="138" Click="BtStartFourPart"/>
+
+
 
 
     </Grid>

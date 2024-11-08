@@ -28,7 +28,7 @@ namespace lab3
             InitializeComponent();
         }
 
-        private void BtStart(object sender, RoutedEventArgs e)
+        private void BtStartFourPart(object sender, RoutedEventArgs e)
         {
             int numTask = int.Parse(NumberOfTask.Text);
             string[] array1 = List1.Text.Split(',', ' ', ';');
@@ -140,12 +140,14 @@ namespace lab3
 
         private void Write(List<string> list)
         {
+            TbOut.Text+= "Result:\n";
+
             foreach(var s in list)
             {
-                LbOut.Content += s + " ";
+                TbOut.Text += s + " ";
             }
 
-            LbOut.Content += "\n";
+            TbOut.Text += "\n";
 
 
         }

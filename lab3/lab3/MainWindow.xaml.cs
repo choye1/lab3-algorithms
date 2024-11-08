@@ -42,7 +42,7 @@ namespace lab3
 
         public void Main()
         {
-           
+
             Logger logger = new Logger();
             logger.RemoveLogs();
             string namefile = "a.txt"; //СЮДА ХУЯЧИМ ИМЯ ФАЙЛА, ИЗ КОТОРОГО ЧИТАЕМ ДАННЫЕ ДЛЯ КУЕУЕ
@@ -85,87 +85,19 @@ namespace lab3
         {
             try
             {
-                if (ModesSelector.IsChecked == true)
-                {
-                    FourTaskHandler();
-
-                }
-                else
-                {
-                    CommandHandler();
-                }
+                CommandHandler();
             }
 
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 tbConsole.Text = "";
-                WriteLine(ex.Message);                
+                WriteLine(ex.Message);
             }
 
         }
 
-        private void FourTaskHandler()
-        {
-            int numberOfTask = int.Parse(tbCommand.Text.Split(",")[0]);  //Лютый синтаксис: Номер задания,список значений;[строка х / число f; число g / Список значений 2]
-            string args = tbCommand.Text.Split(",")[1];
-            args.Replace("; ", ";");
-            args.Replace(", ", ",");
-            
-            switch (numberOfTask)
-            {
-                case 1:
-                    WriteArray(new Task1<string>() { }.GetResult(RemoveProbels(args.Split(" ")).ToList()).ToArray());
-                    break;
-                case 2:
-                    WriteArray(new Task2<string>() { }.GetResult(RemoveProbels(args.Split(" ")).ToList()).ToArray());
-                    break;
-                case 3:
-                    WriteLine(new Task3<string>() { }.GetResult(RemoveProbels(args.Split(" ")).ToList()).ToString());
-                    break;
-                case 4:
-                    WriteArray(new Task4<string>() { }.GetResult(RemoveProbels(args.Split(" ")).ToList()).ToArray());
-                    break;
-                case 5:
-                    WriteArray(new Task5<string>() { }.GetResult(RemoveProbels(args.Split(";")[0].Split(" ")).ToList(), args.Split(";")[1].Replace(" ","")).ToArray());
-                    break;
-                case 6:
-                    //WriteArray(new Task6<string>() { }.GetResult(args.Split(";")[0].Replace(" ", ""), RemoveProbels(args.Split(";")[1].Split(" ")).ToList()).ToArray());
-                    break;
-                case 7:
-                    WriteArray(new Task7<string>() { }.GetResult(RemoveProbels(args.Split(";")[0].Split(" ")).ToList(), args.Split(";")[1].Replace(" ", "")).ToArray());
-                    break;
-                case 8:
-                    WriteArray(new Task8<string>() { }.GetResult(RemoveProbels(args.Split(";")[0].Split(" ")).ToList(), args.Split(";")[1].Replace(" ", ""), args.Split(";")[2].Replace(" ", "")).ToArray());
-                    break;
-                case 9:
-                    WriteArray(new Task9<string>() { }.GetResult(RemoveProbels(args.Split(";")[0].Split(" ")).ToList(), RemoveProbels(args.Split(";")[1].Split(" ")).ToList()).ToArray());
-                    break;
-                case 10:
-                    var result = new Task10<string>() { }.GetResult(RemoveProbels(args.Split(";")[0].Split(" ")).ToList(), args.Split(";")[1].Replace(" ", "")).ToArray();
-                    WriteArray(result[0].ToArray());
-                    WriteArray(result[1].ToArray());
-                    break;
-                case 11:
-                    WriteArray(new Task11<string>() { }.GetResult(RemoveProbels(args.Split(" ")).ToList()).ToArray());
-                    break;
-                case 12:
-                    WriteArray(new Task12<string>() { }.GetResult(RemoveProbels(args.Split(";")[0].Split(" ")).ToList(), args.Split(";")[1].Replace(" ", ""), args.Split(";")[2].Replace(" ", "")).ToArray());
-                    break;
-                default:
-                    throw new Exception("НЕКОРРЕКТНЫЙ ВВОД!!! Используйте синтаксис: Номер задания, список значений; [строка х / число f; число g / Список значений 2] ");
 
-            }
-        }
 
-        private string[] RemoveProbels(string[] probels)
-        {
-            List<string> result = new List<string>();
-            foreach (string probel in probels)
-            {
-                result.Add(probel.Replace(" ",""));
-            }
-            return result.ToArray();
-        }
 
 
         private void CommandHandler()
@@ -338,19 +270,6 @@ namespace lab3
                 GraphStack.Refresh();
             }
 
-        }
-
-        private void RadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            if (ModesSelector.IsChecked == true)
-            {
-                ModesSelector.Content = ("4 часть. Используйте: [Номер задания], [Входные данные через пробел] ");
-            }
-
-            else
-            {
-                ModesSelector.Content = ("Консоль. Используйте: [queue/stack] command [args] ");
-            }
         }
     }
 }
