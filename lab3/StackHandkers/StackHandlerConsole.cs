@@ -2,24 +2,26 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using Loggers;
+using System.Text;
 using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
+using ListDynamicStructures;
 
-namespace DynamicStructuresEntities
+namespace StackHandlers
 {
-    public class QueueHandlerConsole
+    public class StackHandlerConsole
     {
-        string[] command;
         Logger logger = new Logger();
 
-        CustomQueue<string> queue;
 
-        public QueueHandlerConsole(string[] command_, CustomQueue<string> queue)
+        string[] command;
+        CustomStack<string> stack;
+
+        public StackHandlerConsole(string[] command, CustomStack<string> stack)
         {
-            command = command_;
-            this.queue = queue;
+            this.command = command;
+            this.stack = stack;
+
         }
 
 
@@ -39,53 +41,49 @@ namespace DynamicStructuresEntities
 
                     if (s.StartsWith("1"))
                     {
-                        queue.Enqueue(s.Substring(2));
-                        logger.WriteLine($"Выполнена команда Enqueue({s.Substring(2)})");
+                        logger.WriteLine($"Выполнена команда push({s.Substring(2)})");
+                        stack.Push(s.Substring(2));
                     }
                     else if (s == "2")
                     {
-                        queue.Dequeue();
-                        logger.WriteLine("Выполнена команда Dequeue");
+                        logger.WriteLine("Выполнена команда pop");
+                        stack.Pop();
                     }
                     else if (s == "3")
                     {
-                        queue.Top();
                         logger.WriteLine("Выполнена команда top");
-
+                        stack.Top();
                     }
                     else if (s == "4")
                     {
-                        queue.IsEmpty();
                         logger.WriteLine("Выполнена команда isEmpty");
-
+                        stack.IsEmpty();
                     }
                     else if (s == "5")
                     {
                         logger.WriteLine("Выполнена команда print");
-                        queue.Print();
-
-
+                        stack.Print();
                     }
                     else
                     {
                         logger.WriteLine("Некорректный ввод");
                     }
 
-                    //queue.Print();
+                    //stack.Print();
+
                     stopwatch.Stop();
                     TimeSpan timeSpan = stopwatch.Elapsed;
                     stopwatch.Reset();
                     timeForGraph.Add((float)timeSpan.TotalMilliseconds * 100);
-
-
                 }
             }
-
             catch (Exception)
             {
-                logger.Write("Некорректный ввод");
+                logger.WriteLine("Некорректный ввод");
+
             }
 
+            
 
 
             return timeForGraph;
@@ -97,4 +95,5 @@ namespace DynamicStructuresEntities
         }
 
     }
+
 }

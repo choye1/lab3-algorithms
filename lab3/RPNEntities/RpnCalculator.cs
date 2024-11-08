@@ -10,6 +10,7 @@ using System.Globalization;
 using System.Runtime.CompilerServices;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using DynamicStructuresEntities;
+using ListDynamicStructures;
 
 namespace RPNEntities
 {
