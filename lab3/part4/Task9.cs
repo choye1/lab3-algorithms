@@ -13,7 +13,8 @@ namespace part4
     {
         LinkedListQueue<T> queue = new LinkedListQueue<T>();
 
-        public DynamicStructuresEntities.LinkedList<T> GetResult(DynamicStructuresEntities.LinkedList<T> list1, DynamicStructuresEntities.LinkedList<T> list2)
+        public DynamicStructuresEntities.LinkedList<T> GetResult(DynamicStructuresEntities.LinkedList<T> list1,
+            DynamicStructuresEntities.LinkedList<T> list2)
         {
             for (int i = 0; i < list1.Count(); i++)
             {
