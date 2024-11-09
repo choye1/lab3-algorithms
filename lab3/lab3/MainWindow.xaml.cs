@@ -33,7 +33,12 @@ namespace lab3
             InitializeComponent();
             WindowForTasks windowForTasks = new WindowForTasks();
             windowForTasks.Show();
+            GraphQueue.Plot.XLabel("Комманда №");
+            GraphQueue.Plot.YLabel("Время мс*100");
+            GraphStack.Plot.XLabel("Комманда №");
+            GraphStack.Plot.YLabel("Время мс*100");
             Main();
+
         }
 
 
@@ -45,8 +50,8 @@ namespace lab3
 
             Logger logger = new Logger();
             logger.RemoveLogs();
-            string namefile = "a.txt"; //СЮДА ХУЯЧИМ ИМЯ ФАЙЛА, ИЗ КОТОРОГО ЧИТАЕМ ДАННЫЕ ДЛЯ КУЕУЕ
-            string namefileForStack = "b.txt"; //СЮДА ХУЯЧИМ ИМЯ ФАЙЛА, ИЗ КОТОРОГО ЧИТАЕМ ДАННЫЕ ДЛЯ СТЕКА
+            string namefile = "a.txt"; //СЮДА  ИМЯ ФАЙЛА, ИЗ КОТОРОГО ЧИТАЕМ ДАННЫЕ ДЛЯ КУЕУЕ
+            string namefileForStack = "b.txt"; //СЮДА  ИМЯ ФАЙЛА, ИЗ КОТОРОГО ЧИТАЕМ ДАННЫЕ ДЛЯ СТЕКА
 
             //float[] timeForGraphQueue = new QueueHandler(namefile).HandleFile();
 
@@ -140,7 +145,7 @@ namespace lab3
 
             List<string> ParsedCommand = new List<string>();
             string[] args = command.Split(' ');
-            if (args.Length < 2) { throw new Exception("Некорректный ввод адресата комманды, используйте следующий синтаксис: [stack/queue] command [args]"); }
+            if (args.Length < 2) { throw new Exception("Некорректный ввод адресата комманды, \nиспользуйте следующий синтаксис: [stack/queue] command [args]"); }
             string addresseeCommand = args[0];
             string commandName = args[1];
             args[0] = string.Empty;
@@ -155,7 +160,7 @@ namespace lab3
                 case ("queue"):
                     ParsedCommand.Add("q");
                     break;
-                default: throw new Exception("Некорректный ввод адресата комманды, используйте следующий синтаксис: [stack/queue] command [args]");
+                default: throw new Exception("Некорректный ввод адресата комманды, \nиспользуйте следующий синтаксис: [stack/queue] command [args]");
             }
 
             ParsedCommand.Add(GiveCodeOfCommand(commandName));
@@ -191,7 +196,7 @@ namespace lab3
                 case ("print"):
                     return "5";
 
-                default: throw new Exception("Некорректный ввод, используйте комманды: push, pop, top, isEmpty, print, dequeue, queue, add, remove.");
+                default: throw new Exception("Некорректный ввод, используйте комманды: \n push, pop, top, isEmpty, print, \n dequeue, queue, add, remove.");
             }
         }
 
@@ -238,12 +243,12 @@ namespace lab3
 
             Logger logger = new Logger();
             logger.RemoveLogs();
-            string namefile = "queue.txt"; //СЮДА ХУЯЧИМ ИМЯ ФАЙЛА, ИЗ КОТОРОГО ЧИТАЕМ ДАННЫЕ ДЛЯ КУЕУЕ
-            string namefileForStack = "stack.txt"; //СЮДА ХУЯЧИМ ИМЯ ФАЙЛА, ИЗ КОТОРОГО ЧИТАЕМ ДАННЫЕ ДЛЯ СТЕКА
+            string namefile = "queue.txt"; //СЮДА ИМЯ ФАЙЛА, ИЗ КОТОРОГО ЧИТАЕМ ДАННЫЕ ДЛЯ КУЕУЕ
+            string namefileForStack = "stack.txt"; //СЮДА ИМЯ ФАЙЛА, ИЗ КОТОРОГО ЧИТАЕМ ДАННЫЕ ДЛЯ СТЕКА
 
             float[] timeForGraphQueue = new QueueHandler(namefile).HandleFile();
             WriteGraph(timeForGraphQueue, "queue");
-            logger.WriteLine("^Queue^");
+            logger.WriteLine("^Queue^"); 
             logger.WriteLine("\\/Stack\\/");
 
             float[] timeForGraphStack = new StackHandler(namefileForStack).HandleFile();
@@ -255,7 +260,7 @@ namespace lab3
         private void WriteGraph(float[] times, string addreess)
         {
             List<float> dataX = new List<float>();
-            for (int i = 0; i < times.Length; i++) { dataX.Add((float)i); }
+            for (int i = 1; i < times.Length+1; i++) { dataX.Add((float)i); }
             if (addreess == "queue")
             {
                 GraphQueue.Plot.Add.Scatter(dataX.ToArray(), times);
