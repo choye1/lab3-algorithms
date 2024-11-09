@@ -54,7 +54,7 @@
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding Text, ElementName=List1}" Value="">
+                        <DataTrigger Binding="{Binding Text, ElementName=tbRpnIn}" Value="">
                             <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>
                     </Style.Triggers>

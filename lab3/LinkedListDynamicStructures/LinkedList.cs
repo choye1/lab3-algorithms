@@ -20,6 +20,19 @@ namespace DynamicStructuresEntities
             get { return GetAt(index); }
         }
 
+        public List<T> ToList() 
+        {
+            List<T> list = new List<T>();
+            var current = head;
+            while (current != null)
+            {
+                list.Add(current.Data);
+                current = current.Next;
+            }
+
+            return list;
+        }
+
         // Метод для получения элемента по индексу
         public T GetAt(int index)
         {

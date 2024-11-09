@@ -63,7 +63,7 @@ namespace DynamicStructuresEntities
                         }
                         else if (command == "2")  // Dequeue
                         {
-                            if (! queue.IsEmpty())
+                            if (! (queue.Count == 0))
                             {
                                 queue.Dequeue();
                                 logger.WriteLine("Выполнена команда dequeue");
@@ -75,7 +75,7 @@ namespace DynamicStructuresEntities
                         }
                         else if (command == "3")  // Peek (Top аналог в очереди)
                         {
-                            if (!queue.IsEmpty())
+                            if (!(queue.Count == 0))
                             {
                                 string front = queue.Peek();
                                 logger.WriteLine($"Выполнена команда top: {front}");
@@ -87,7 +87,7 @@ namespace DynamicStructuresEntities
                         }
                         else if (command == "4")  // IsEmpty
                         {
-                            bool isEmpty = queue.IsEmpty();
+                            bool isEmpty = (queue.Count == 0);
                             logger.WriteLine($"Выполнена команда isEmpty: {isEmpty}");
                         }
                         else if (command == "5")  // Print

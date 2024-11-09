@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using DynamicStructuresEntities;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
@@ -36,7 +36,7 @@ namespace lab3
             string[] array2 = List2.Text.Split(',', ' ', ';');
             try
             {
-                List<string> result = StartTask(numTask, array1.ToList(), array2.ToList());
+                List<string> result = StartTask(numTask, array1.ToList(), array2.ToList()).ToList();
 
                 Write(result);
             }
@@ -49,11 +49,11 @@ namespace lab3
 
         }
 
-        private List<string> StartTask(int num, List<string> array1, List<string> List2)
+        private DynamicStructuresEntities.LinkedList<string> StartTask(int num, List<string> in1, List<string> in2)
         {
-            List<string> result = new List<string>();
-            array1 = RemoveSpace(array1);
-            List2 = RemoveSpace(List2);
+            DynamicStructuresEntities.LinkedList<string> result = new DynamicStructuresEntities.LinkedList<string>();
+            var array1 = RemoveSpace(in1);
+            var List2 = RemoveSpace(in2);
             switch (num)
             {
                 case 1:
@@ -65,7 +65,7 @@ namespace lab3
                     break;
 
                 case 3:
-                    result.Add(new Task3<string>() { }.GetResult(array1).ToString());
+                    result.AddLast(new Task3<string>() { }.GetResult(array1).ToString());
                     break;
 
                 case 4:
@@ -93,7 +93,7 @@ namespace lab3
                     break;
 
                 case 10:
-                    result = Give10TaskResult(array1, List2[0]);
+                    result = Get10TaskResult(array1, List2[0]);
                     break;
 
                 case 11:
@@ -111,29 +111,31 @@ namespace lab3
             return result;
         }
 
-        private List<string> RemoveSpace(List<string> list)
+        private DynamicStructuresEntities.LinkedList<string> RemoveSpace(List<string> list)
         {
-            List<string> result = new List<string>();
+            DynamicStructuresEntities.LinkedList<string> result = new DynamicStructuresEntities.LinkedList<string>();
 
             foreach (string s in list)
             {
-                result.Add(s.Replace(" ", ""));
+                result.AddLast(s.Replace(" ", ""));
             }
+
             return result;
         }
 
-        private List<string> Give10TaskResult(List<string> array1, string val)
+        private DynamicStructuresEntities.LinkedList<string> Get10TaskResult(DynamicStructuresEntities.LinkedList<string> array1, string val)
         {
-            List<string> result = new List<string>();
+            DynamicStructuresEntities.LinkedList<string> result = new DynamicStructuresEntities.LinkedList<string>();
             var res = new Task10<string>() { }.GetResult(array1, val);
+            res.ToList();
             foreach (var r in res)
             {
-                foreach (var s in r)
+                foreach (var s in r.ToList())
                 {
-                    result.Add(s);
+                    result.AddLast(s);
                 }
 
-                result.Add(" И ");
+                result.AddLast(" И ");
             }
 
             return result;
