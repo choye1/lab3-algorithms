@@ -29,21 +29,45 @@ namespace lab3
             InitializeComponent();
         }
 
+        private void tbCommandKeydown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                BtStartRPN(sender, e);
+            }
+        }
+
+        private void tbTaskKeydown(object sender, KeyEventArgs e)
+        {
+            if (NumberOfTask.Text!="" && List1.Text != "" && e.Key == Key.Enter)
+            {
+                BtStartFourPart(sender, e);
+            }
+        }
+
+
+
         private void BtStartFourPart(object sender, RoutedEventArgs e)
         {
-            int numTask = int.Parse(NumberOfTask.Text);
-            string[] array1 = List1.Text.Split(',', ' ', ';');
-            string[] array2 = List2.Text.Split(',', ' ', ';');
             try
             {
+                int numTask = int.Parse(NumberOfTask.Text);
+                string[] array1 = List1.Text.Split(',', ' ', ';');
+                string[] array2 = List2.Text.Split(',', ' ', ';');
+
                 List<string> result = StartTask(numTask, array1.ToList(), array2.ToList()).ToList();
 
                 Write(result);
             }
 
-            catch
+            catch(Exception ex)
             {
-                throw new Exception("Некорректный ввод");
+                if (ex.Message != "")
+                {
+                    TbOut.Text = ex.Message;
+                }
+
+                TbOut.Text = "Некорректный ввод";
             }
 
 
@@ -165,10 +189,15 @@ namespace lab3
                 string result = rh.GetResult().ToString();
                 TbOut.Text = "Result: " + result + "\nRPN:" + rpn;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 TbOut.Text = ex.Message;
             }
+
+        }
+
+        private void TextBlock_KeyDown(object sender, KeyEventArgs e)
+        {
 
         }
     }

@@ -276,5 +276,13 @@ namespace lab3
             }
 
         }
+
+        private void tbCommandKeydown(object sender, KeyEventArgs e)
+        {
+            if (tbCommand.Text!="" && e.Key == Key.Enter)
+            {
+                Button_Click(sender, e);
+            }
+        }
     }
 }
