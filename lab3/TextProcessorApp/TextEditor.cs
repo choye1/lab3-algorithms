@@ -16,6 +16,7 @@ namespace TextProcessorApp
         private Stack<TextAction> _redoStack = new Stack<TextAction>();
         private TextBox _textBox;
         private bool _isHandlingUndoRedo; // флаг для блокировки TextChanged при Undo/Redo
+        private string _text;
 
         public TextEditor(TextBox textBox)
         {
@@ -33,6 +34,7 @@ namespace TextProcessorApp
             {
                 if (change.AddedLength > 0)
                 {
+                    _text = _textBox.Text;
                     string addedText = _textBox.Text.Substring(change.Offset, change.AddedLength);
                     var action = new TextAction("Add", addedText, change.Offset);
                     _undoStack.Push(action);
@@ -41,7 +43,7 @@ namespace TextProcessorApp
                 else if (change.RemovedLength > 0 && change.Offset + change.RemovedLength <= _textBox.Text.Length + change.RemovedLength)
                 {
                     // Удаление текста
-                    string removedText = _textBox.Text.Substring(change.Offset, change.RemovedLength);
+                    string removedText = _text.Substring(change.Offset, change.RemovedLength);
                     var action = new TextAction("Remove", removedText, change.Offset);
                     _undoStack.Push(action);
                     _redoStack.Clear();
