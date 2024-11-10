@@ -16,7 +16,7 @@ namespace part4
         public DynamicStructuresEntities.LinkedList<T> GetResult(DynamicStructuresEntities.LinkedList<T> list)
         {
             LinkedListQueue<T> queue = new LinkedListQueue<T>();
-            HashSet<T> uniqueElements = new HashSet<T>(); // Хранение уникальных элементов
+            HashSet<T> uniqueElements = new HashSet<T>();
 
             var current = list.head;
             while (current != null)
