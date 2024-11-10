@@ -8,7 +8,7 @@ namespace DynamicStructuresEntities
 {
     public class LinkedList<T>
     {
-        private Node<T> head;
+        public Node<T> head;
 
         public LinkedList()
         {
@@ -20,17 +20,20 @@ namespace DynamicStructuresEntities
             get { return GetAt(index); }
         }
 
-        public List<T> ToList() 
+        public List<T> ToList
         {
-            List<T> list = new List<T>();
-            var current = head;
-            while (current != null)
+            get
             {
-                list.Add(current.Data);
-                current = current.Next;
-            }
+                List<T> list = new List<T>();
+                var current = head;
+                while (current != null)
+                {
+                    list.Add(current.Data);
+                    current = current.Next;
+                }
 
-            return list;
+                return list;
+            }
         }
 
         // Метод для получения элемента по индексу
@@ -149,7 +152,18 @@ namespace DynamicStructuresEntities
             }
             return count;
         }
-
+        public LinkedList<T> LLToList()
+        {
+            LinkedList<T> newList = new LinkedList<T>();
+            var current = head;
+            while (current != null)
+            {
+                newList.AddLast(current.Data);
+                current = current.Next;
+            }
+            return newList;
+        }
     }
+
 
 }

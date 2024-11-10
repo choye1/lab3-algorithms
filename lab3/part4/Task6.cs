@@ -16,10 +16,14 @@ namespace part4
         {
             for (int i = 0; i < list.Count(); i++)
             {
-                if (list[i].CompareTo(val) < 0)    
+                if (list[i].CompareTo(val) > 0)    
                 {
                     queue.Enqueue(val);
-                    val = list[i+1];
+                    if (i + 1 != list.Count())
+                    {
+                        val = list[i + 1];
+                    }
+                    
                 }
                 queue.Enqueue(list[i]);
             }

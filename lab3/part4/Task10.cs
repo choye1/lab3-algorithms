@@ -17,26 +17,31 @@ namespace part4
 
         public DynamicStructuresEntities.LinkedList<T>[] GetResult(DynamicStructuresEntities.LinkedList<T> list, T val) 
         {
+            int indexVal = -1;
             for(int i = 0; i < list.Count(); i++)
             {
-                count++;
-                if (!list[i].Equals(val))
+                if (list[i].Equals(val))
                 {
-                    queue1.Enqueue(list[i]);
+                    indexVal = i; break;
                 }
-                else
-                {
-                    // проходим по оставшемуся списку и записываем элем-ты во вторую очередь
-                    for (int j = count; j < list.Count(); j++)
-                    {
-                        queue2.Enqueue(list[j]);
-                    }
-                    // проходим заново по оставшимся элем-там и удаляем их, чтобы они не записывались в первую очередь
-                    for (int j = count; j < list.Count(); j++)
-                    {
-                        list.RemoveAt(j);
-                    }
-                }
+            }
+
+            if (indexVal == -1)
+            {
+                DynamicStructuresEntities.LinkedList<T> l = new DynamicStructuresEntities.LinkedList<T>();
+                result[0] = list;
+                result[1] = l;
+                return result;
+            }
+
+            for (int i = 0; i <= indexVal; i++)
+            {
+                queue1.Enqueue(list[i]);
+            }
+            
+            for (int i = indexVal + 1; i < list.Count(); i++)
+            {
+                queue2.Enqueue(list[i]);
             }
             result[0] = queue1.LLGetQueue();
             result[1] = queue2.LLGetQueue();

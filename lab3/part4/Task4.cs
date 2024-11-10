@@ -15,17 +15,22 @@ namespace part4
 
         public DynamicStructuresEntities.LinkedList<T> GetResult(DynamicStructuresEntities.LinkedList<T> list)
         {
-            for (int i = 0; i < list.Count(); i++)
-            {
-                stack.Push(list[i]);
+            LinkedListQueue<T> queue = new LinkedListQueue<T>();
+            HashSet<T> uniqueElements = new HashSet<T>(); // Хранение уникальных элементов
 
-                if (!stack.UniqueValue(list[i]))
-                {
-                    stack.Pop();
-                }
+            var current = list.head;
+            while (current != null)
+            {
+                uniqueElements.Add(current.Data);
+                current = current.Next;
+            }
+            
+            foreach (var item in uniqueElements)
+            {
+                queue.Enqueue(item);
             }
 
-            return stack.LLGetStack();
+            return queue.LLGetQueue();
         }
     }
 }

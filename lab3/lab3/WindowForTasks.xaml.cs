@@ -55,7 +55,7 @@ namespace lab3
                 string[] array1 = List1.Text.Split(',', ' ', ';');
                 string[] array2 = List2.Text.Split(',', ' ', ';');
 
-                List<string> result = StartTask(numTask, array1.ToList(), array2.ToList()).ToList();
+                List<string> result = StartTask(numTask, array1.ToList(), array2.ToList()).ToList;
 
                 Write(result);
             }
@@ -154,7 +154,7 @@ namespace lab3
             res.ToList();
             foreach (var r in res)
             {
-                foreach (var s in r.ToList())
+                foreach (var s in r.ToList)
                 {
                     result.AddLast(s);
                 }

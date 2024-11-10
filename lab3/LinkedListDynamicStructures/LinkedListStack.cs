@@ -15,7 +15,7 @@ namespace DynamicStructuresEntities
         // Добавление элемента в стек
         public void Push(T data)
         {
-            list.AddFirst(data);
+            list.AddLast(data);
         }
 
         // Удаление элемента из стека
@@ -58,20 +58,6 @@ namespace DynamicStructuresEntities
             }
         }
 
-        public bool UniqueValue(T value)
-        {
-            var current = list.Peek();
-            while (current != null)
-            {
-                if (current.Equals(value))
-                {
-                    return false;
-                }
-                current = list.RemoveFirst();
-            }
-            return true;
-        }
-
         public List<T> GetStack()
         {
             List<T> values = new List<T>();
@@ -100,6 +86,7 @@ namespace DynamicStructuresEntities
             }
             return count;
         }
+        
     }
 
 }

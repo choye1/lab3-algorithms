@@ -15,16 +15,16 @@ namespace part4
 
         public int GetResult(DynamicStructuresEntities.LinkedList<T> list)
         {
-            for (int i = 0; i < list.Count(); i++)
+            HashSet<T> uniqueElements = new HashSet<T>(); // Хранение уникальных элементов
+
+            var current = list.head;
+            while (current != null)
             {
-                stack.Push(list[i]);
-                if (stack.UniqueValue(list[i]))
-                {
-                    count++;
-                }
+                uniqueElements.Add(current.Data); 
+                current = current.Next;
             }
 
-            return count;
+            return uniqueElements.Count;
         }
     }
 }
