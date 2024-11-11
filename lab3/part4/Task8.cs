@@ -11,19 +11,30 @@ namespace part4
     public class Task8<T> 
     {
         LinkedListQueue<T> queue = new LinkedListQueue<T>();
-        int eCount = 0;
+       
         public DynamicStructuresEntities.LinkedList<T> GetResult(DynamicStructuresEntities.LinkedList<T> list, T f, T e)
         {
-            for (int i = 0; i < list.Count(); i++) 
+            int index = -1;
+            int eCount = 0;
+            for (int i = 0; i < list.Count(); i++)
             {
-                if (list[i+1].Equals(e) && eCount == 0)
+                if (list[i].Equals(e))
                 {
-                    queue.Enqueue(list[i]);
-                    queue.Enqueue(f);
-                    // надо придумать как удалить е
-                    eCount++; // придумал
+                    index = i; break;
                 }
+            }
+            if (index == -1)
+            {
+                return list;
+            }
+            for (int i = 0; i < list.Count(); i++)
+            {
                 queue.Enqueue(list[i]);
+                if (i == index && eCount == 0)
+                {
+                    queue.Enqueue(f);
+                    eCount++;
+                }
             }
             return queue.LLGetQueue();
         }

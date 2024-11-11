@@ -14,7 +14,28 @@ namespace part4
 
         public DynamicStructuresEntities.LinkedList<T> GetResult (DynamicStructuresEntities.LinkedList<T> list, T val)
         {
+            int index = -1;
             for (int i = 0; i < list.Count(); i++)
+            {
+                if (list[i].Equals(val))
+                {
+                    index = i;
+                }
+            }
+            if (index == -1)
+            {
+                list.AddLast(val);
+                return list;
+            }
+            for (int i = 0; i < list.Count(); i++)
+            {
+                queue.Enqueue(list[i]);
+                if (i == index)
+                {
+                    queue.Enqueue(val);
+                }
+            }
+            /*for (int i = 0; i < list.Count(); i++)
             {
                 if (list[i].CompareTo(val) > 0)    
                 {
@@ -26,7 +47,7 @@ namespace part4
                     
                 }
                 queue.Enqueue(list[i]);
-            }
+            }*/
             return queue.LLGetQueue();
         }
     }

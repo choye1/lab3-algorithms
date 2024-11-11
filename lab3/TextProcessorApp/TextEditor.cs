@@ -40,7 +40,8 @@ namespace TextProcessorApp
                     _undoStack.Push(action);
                     _redoStack.Clear(); // очищаем стек Redo при любом новом изменении
                 }
-                else if (change.RemovedLength > 0 && change.Offset + change.RemovedLength <= _textBox.Text.Length + change.RemovedLength)
+                else if (change.RemovedLength > 0 &&
+                    change.Offset + change.RemovedLength <= _textBox.Text.Length + change.RemovedLength)
                 {
                     // Удаление текста
                     //string removedText = _text.Substring(change.Offset, change.RemovedLength);
