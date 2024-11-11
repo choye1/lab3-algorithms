@@ -31,7 +31,8 @@ namespace BankQueueSystem
 {
     public partial class MainWindow : Window
     {
-        private ConcurrentQueue<(string ClientName, string Service, int Time)> _queue = new ConcurrentQueue<(string ClientName, string Service, int Time)>();
+        private ConcurrentQueue<(string ClientName, string Service, int Time)> 
+            _queue = new ConcurrentQueue<(string ClientName, string Service, int Time)>();
         private List<ProgressBar> _bankersProgressBars = new List<ProgressBar>();
         private List<bool> _bankersAvailability = new List<bool>();
 
@@ -72,7 +73,8 @@ namespace BankQueueSystem
 
                 for (int i = 0; i < numberOfBankers; i++)
                 {
-                    ProgressBar progressBar = new ProgressBar { Maximum = 100, Value = 0, Height = 20, Margin = new Thickness(0, 5, 0, 5) };
+                    ProgressBar progressBar = new ProgressBar { Maximum = 100, Value = 0,
+                        Height = 20, Margin = new Thickness(0, 5, 0, 5) };
                     _bankersProgressBars.Add(progressBar);
                     _bankersAvailability.Add(true); // Bankers are initially available
                     BankersItemsControl.Items.Add(progressBar);
@@ -97,7 +99,7 @@ namespace BankQueueSystem
                     while (availableBankerIndex == -1)
                     {
                         availableBankerIndex = _bankersAvailability.FindIndex(isAvailable => isAvailable);
-                        if (availableBankerIndex == -1) await Task.Delay(500); // Retry in half a second if no bankers are available
+                        if (availableBankerIndex == -1) await Task.Delay(500); 
                     }
 
                     // Assign the client to the available banker
@@ -112,7 +114,8 @@ namespace BankQueueSystem
             }
         }
 
-        private async Task ServeClient((string ClientName, string Service, int Time) client, ProgressBar progressBar, int bankerIndex)
+        private async Task ServeClient((string ClientName, string Service, int Time)
+            client, ProgressBar progressBar, int bankerIndex)
         {
             // Remove client from the list as they're now being served
             Application.Current.Dispatcher.Invoke(() =>

@@ -17,10 +17,12 @@ namespace BankQueueSystem
     public partial class PlaceholderTextBox : UserControl
     {
         public static readonly DependencyProperty TextProperty =
-            DependencyProperty.Register("Text", typeof(string), typeof(PlaceholderTextBox), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("Text", typeof(string), 
+                typeof(PlaceholderTextBox), new PropertyMetadata(string.Empty));
 
         public static readonly DependencyProperty PlaceholderProperty =
-            DependencyProperty.Register("Placeholder", typeof(string), typeof(PlaceholderTextBox), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("Placeholder", typeof(string), 
+                typeof(PlaceholderTextBox), new PropertyMetadata(string.Empty));
 
         public string Text
         {
