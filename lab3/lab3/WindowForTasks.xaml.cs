@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using DynamicStructuresEntities;
 using System.Linq;
 using System.Net.Http.Headers;
@@ -16,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Collections;
+using ScottPlot;
 
 namespace lab3
 {
@@ -39,7 +41,7 @@ namespace lab3
 
         private void tbTaskKeydown(object sender, KeyEventArgs e)
         {
-            if (NumberOfTask.Text!="" && List1.Text != "" && e.Key == Key.Enter)
+            if (NumberOfTask.Text != "" && List1.Text != "" && e.Key == Key.Enter)
             {
                 BtStartFourPart(sender, e);
             }
@@ -60,7 +62,7 @@ namespace lab3
                 Write(result);
             }
 
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 if (ex.Message != "")
                 {
@@ -152,6 +154,7 @@ namespace lab3
             DynamicStructuresEntities.LinkedList<string> result = new DynamicStructuresEntities.LinkedList<string>();
             var res = new Task10<string>() { }.GetResult(array1, val);
             res.ToList();
+            bool fl = true;
             foreach (var r in res)
             {
                 foreach (var s in r.ToList)
@@ -159,8 +162,13 @@ namespace lab3
                     result.AddLast(s);
                 }
 
-                result.AddLast(" И ");
+                if (fl)
+                {
+                    result.AddLast(" И ");
+                    fl = false;
+                }
             }
+
 
             return result;
         }
@@ -171,7 +179,10 @@ namespace lab3
 
             foreach (var s in list)
             {
-                TbOut.Text += s + " ";
+                if (s != null && s != "")
+                {
+                    TbOut.Text += s + " ";
+                }
             }
 
             TbOut.Text += "\n";
@@ -196,9 +207,69 @@ namespace lab3
 
         }
 
-        private void TextBlock_KeyDown(object sender, KeyEventArgs e)
+        private void TaskSelected(object sender, RoutedEventArgs e)
         {
 
+            if (NumberOfTask.Text == "9")
+            {
+                string path = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.Parent?.ToString() + "\\fileFor9Task.txt";
+                string file = "";
+
+                Button btn = new Button();
+                btn.Content = "NewButton";
+                btn.Width = 100;
+                btn.Height = 25;
+
+                try
+                {
+                    try { file = File.ReadAllText(path); }
+                    catch { TbOut.Text = "Файл не найден!"; }
+
+                    var lst = ParseFile(file);
+                    Write(StartTask(9, lst[0].ToList(), lst[1].ToList()).ToList);
+                }
+
+                catch (Exception ex)
+                {
+                    TbOut.Text = ex.Message + "\r\n"; ;
+                }
+            }
         }
+
+        private string[][] ParseFile(string file)
+        {
+            List<string[]> resultLines = new List<string[]>();
+            try
+            {
+                if (file == null)
+                {
+                    throw new Exception("Файл не может быть пустым");
+                }
+                string[] lines = file.Split("\n");
+                foreach (string line in lines)
+                {
+                    if (line != "\n" && line !="\r")
+                    {
+                        resultLines.Add(line.Split(' ', ',', ';', '\r','\n'));
+                    }
+
+                }
+                return resultLines.ToArray();
+
+            }
+
+
+            catch 
+            {
+                throw new Exception("Произошла ошибка при обработке файла.\nПроверьте правильность ввода.\nКаждый список должен начинаться с новой строки/\nКаждый элемент" +
+                    " списка - через пробел/запятую/точку с запятой.");
+    }
+
+}
+
+private void TextBlock_KeyDown(object sender, KeyEventArgs e)
+{
+
+}
     }
 }
