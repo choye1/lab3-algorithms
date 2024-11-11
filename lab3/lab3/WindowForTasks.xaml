@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="WindowForTasks" Height="450" Width="800">
     <Grid>
-        <TextBox  Width="96"  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="NumberOfTask" Margin="19,50,0,0"/>
+        <TextBox  Width="96"  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="NumberOfTask" Margin="19,50,0,0" TextChanged="TaskSelected"/>
         <TextBlock IsHitTestVisible="False" Text="Номер Задания" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="24,51,0,0" Foreground="DarkGray">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
