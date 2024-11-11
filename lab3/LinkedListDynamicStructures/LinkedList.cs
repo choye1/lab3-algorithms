@@ -152,17 +152,7 @@ namespace DynamicStructuresEntities
             }
             return count;
         }
-        public LinkedList<T> LLToList()
-        {
-            LinkedList<T> newList = new LinkedList<T>();
-            var current = head;
-            while (current != null)
-            {
-                newList.AddLast(current.Data);
-                current = current.Next;
-            }
-            return newList;
-        }
+       
     }
 
 
