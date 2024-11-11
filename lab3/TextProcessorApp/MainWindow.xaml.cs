@@ -62,21 +62,62 @@ namespace TextProcessorApp
             }
         }
 
-        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
-        {
-            if ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
-            {
-                if (e.Key == Key.Z && (Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift)
-                {
-                    _textEditor.Redo();
-                    e.Handled = true;
-                }
-                else if (e.Key == Key.Z)
-                {
-                    _textEditor.Undo();
-                    e.Handled = true;
-                }
-            }
-        }
+        //private void MainWindow_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+        //    {
+        //        if (e.Key == Key.Z && (Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift)
+        //        {
+        //            _textEditor.Redo();
+        //            e.Handled = true;
+        //        }
+        //        else if (e.Key == Key.Z)
+        //        {
+        //            _textEditor.Undo();
+        //            e.Handled = true;
+        //        }
+        //    }
+        //}
+        //private bool _isCtrlEnambled = false;
+        //private bool _isShiftEnambled = false;
+        private void MainWindow_KeyDown(object sender, KeyEventArgs e) { }
+        //{
+        //    if (Keyboard.IsKeyUp(Key.LeftCtrl))
+        //    {
+        //        _isCtrlEnambled = false;
+        //    }
+
+        //    if (Keyboard.IsKeyUp(Key.LeftShift))
+        //    {
+        //        _isShiftEnambled = false;
+        //    }
+
+        //    if (e.Key == Key.LeftCtrl)
+        //    {
+        //        _isCtrlEnambled = true;
+        //    }
+
+        //    if (e.Key == Key.LeftShift)
+        //    {
+        //        _isShiftEnambled = true;
+        //    }
+
+
+
+        //    if (_isCtrlEnambled && e.Key == Key.Z)
+        //    {
+        //        _textEditor.Undo();
+        //        e.Handled = true;
+
+        //    }
+
+        //    else if (e.Key == Key.Z && _isCtrlEnambled && _isShiftEnambled)
+        //    {
+        //        _textEditor.Redo();
+        //        e.Handled = true;
+        //    }
+
+
+        //}
     }
 }

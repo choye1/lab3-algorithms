@@ -2,6 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Text Editor" Height="450" Width="700">
+    
+    
     <Grid>
         <!-- Панель с кнопками управления -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
@@ -18,6 +20,7 @@
 
         <!-- Поле TextBox для ввода текста -->
         <TextBox Name="textBox" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
-                 AcceptsReturn="True" Margin="10,100,10,10" TextWrapping="Wrap" FontSize="16"/>
+                 AcceptsReturn="True" Margin="10,100,10,10" TextWrapping="Wrap" FontSize="16" KeyDown="MainWindow_KeyDown"/>
+    
     </Grid>
 </Window>

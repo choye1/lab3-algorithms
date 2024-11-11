@@ -43,9 +43,9 @@ namespace TextProcessorApp
                 else if (change.RemovedLength > 0 && change.Offset + change.RemovedLength <= _textBox.Text.Length + change.RemovedLength)
                 {
                     // Удаление текста
-                    string removedText = _text.Substring(change.Offset, change.RemovedLength);
-                    var action = new TextAction("Remove", removedText, change.Offset);
-                    _undoStack.Push(action);
+                    //string removedText = _text.Substring(change.Offset, change.RemovedLength);
+                    //var action = new TextAction("Remove", removedText, change.Offset);
+                    //_undoStack.Push(action);
                     _redoStack.Clear();
                 }
             }
@@ -109,6 +109,8 @@ namespace TextProcessorApp
                 _isHandlingUndoRedo = false;
             }
         }
+
+       
 
         public void SaveToFile(string path)
         {

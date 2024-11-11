@@ -102,33 +102,32 @@ namespace OrganizationApp
             }
         }
 
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
-        {
-            string name = SearchNameTextBox.Text;
-            string position = SearchPositionTextBox.Text;
+        //private void SearchButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    string name = SearchNameTextBox.Text;
+        //    string position = SearchPositionTextBox.Text;
 
-            double? salary = null;
-            if (double.TryParse(SearchSalaryTextBox.Text, out double parsedSalary))
-            {
-                salary = parsedSalary;
-            }
+        //    double? salary = null;
+        //    if (double.TryParse(SearchSalaryTextBox.Text, out double parsedSalary))
+        //    {
+        //        salary = parsedSalary;
+        //    }
 
-            var results = employeeManager.SearchEmployees(name, salary, position);
-            DisplaySearchResults(results);
+        //    var results = employeeManager.SearchEmployees(name, salary, position);
+        //    DisplaySearchResults(results);
         }
 
-        private void DisplaySearchResults(List<Employee> employees)
-        {
-            SearchResultsListBox.Items.Clear();
-            foreach (var employee in employees)
-            {
-                SearchResultsListBox.Items.Add(employee.ToString());
-            }
-            if (employees.Count == 0)
-            {
-                SearchResultsListBox.Items.Add("Сотрудники не найдены.");
-            }
-        }
+        //private void DisplaySearchResults(List<Employee> employees)
+        //{
+        //    SearchResultsListBox.Items.Clear();
+        //    foreach (var employee in employees)
+        //    {
+        //        SearchResultsListBox.Items.Add(employee.ToString());
+        //    }
+        //    if (employees.Count == 0)
+        //    {
+        //        SearchResultsListBox.Items.Add("Сотрудники не найдены.");
+        //    }
+        //}
     }
 
-}

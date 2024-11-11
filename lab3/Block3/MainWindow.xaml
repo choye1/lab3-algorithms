@@ -27,21 +27,8 @@
             <Button Content="Вычислить зарплату" Width="200" Margin="5" Click="CalculateSalaryButton_Click"/>
 
             <!-- Поля и кнопка для поиска сотрудников -->
-            <TextBlock Text="Поиск сотрудников:" FontWeight="Bold" Margin="5"/>
-            <TextBlock Text="Имя:" Margin="5"/>
-            <TextBox x:Name="SearchNameTextBox" Width="200" Margin="5"/>
-
-            <TextBlock Text="Должность:" Margin="5"/>
-            <TextBox x:Name="SearchPositionTextBox" Width="200" Margin="5"/>
-
-            <TextBlock Text="Зарплата:" Margin="5"/>
-            <TextBox x:Name="SearchSalaryTextBox" Width="200" Margin="5"/>
-
-            <Button Content="Найти сотрудников" Width="200" Margin="5" Click="SearchButton_Click"/>
 
             <!-- Результаты поиска -->
-            <TextBlock Text="Результаты поиска:" FontWeight="Bold" Margin="5"/>
-            <ListBox x:Name="SearchResultsListBox" Width="350" Height="100" Margin="5"/>
         </StackPanel>
     </Grid>
 </Window>
