@@ -6,17 +6,45 @@
         xmlns:local="clr-namespace:lab3"
         xmlns:ScottPlot="clr-namespace:ScottPlot.WPF;assembly=ScottPlot.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        ResizeMode="NoResize"
+        Title="MainWindow" Height="470" Width="800">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="220"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Background" Value="#4CAF50"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="5" ShadowDepth="2" Color="#888888"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <ScottPlot:WpfPlot x:Name="GraphQueue" HorizontalAlignment="Left" Height="139" Margin="404,8,0,0"  VerticalAlignment="Top" Width="192"/>
-        <TextBox x:Name="tbConsole" HorizontalAlignment="Left" IsReadOnly="True" Height="316" VerticalAlignment="Top" Width="400"/>
-        <TextBox x:Name="tbCommand" HorizontalAlignment="Left" Height="32" Margin="127,341,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="425" KeyDown="tbCommandKeydown" />
-        <Label Content="Command:" HorizontalAlignment="Left" Height="32" Margin="10,341,0,0" VerticalAlignment="Top" Width="117"/>
-        <Button Content="Enter" HorizontalAlignment="Left" Height="32" Margin="557,341,0,0" VerticalAlignment="Top" Width="179" Click="Button_Click"/>
-        <Button Content="Считать комманды из файла" HorizontalAlignment="Left" Height="32" Margin="557,383,0,0" VerticalAlignment="Top" Width="179" Click="UsingCommandFile"/>
-        <ScottPlot:WpfPlot x:Name="GraphStack" HorizontalAlignment="Left" Height="139" Margin="588,160,0,0"  VerticalAlignment="Top" Width="192"/>
+        <ScottPlot:WpfPlot x:Name="GraphQueue" HorizontalAlignment="Left" Height="139" Margin="404,8,0,0"  VerticalAlignment="Top" Width="192" Background="AliceBlue"/>
+        <TextBox x:Name="tbConsole" HorizontalAlignment="Left" IsReadOnly="True" Height="300" VerticalAlignment="Top" Width="370" Margin="20" Background="AliceBlue" BorderBrush="#D3E4FF" BorderThickness="2"/>
+        <TextBox x:Name="tbCommand" HorizontalAlignment="Left" Height="32" Margin="127,341,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="425" KeyDown="tbCommandKeydown"  Background="AliceBlue" BorderBrush="#D3E4FF" BorderThickness="2"/>
+        <Label Content="Команда:" HorizontalAlignment="Left" Height="32" Margin="50,341,0,0" VerticalAlignment="Top" Width="117"/>
+        <Button Content="Выполнить" HorizontalAlignment="Left" Height="32" Margin="577,341,0,0" VerticalAlignment="Top" Width="179" Click="Button_Click"/>
+        <Button Content="Считать комманды из файла" HorizontalAlignment="Left" Height="32" Margin="577,383,0,0" VerticalAlignment="Top" Width="179" Click="UsingCommandFile"/>
+        <ScottPlot:WpfPlot x:Name="GraphStack" HorizontalAlignment="Left" Height="139" Margin="588,160,0,0"  VerticalAlignment="Top" Width="192" Background="AliceBlue"/>
         <Label Content="Стек" HorizontalAlignment="Left" Height="29" Margin="645,141,0,0" VerticalAlignment="Top" Width="112" HorizontalContentAlignment="Center"/>
-        <Label Content="Очередь" HorizontalAlignment="Left" Height="30" Margin="458,-9,0,0" VerticalAlignment="Top" Width="112" HorizontalContentAlignment="Center"/>
+        <Label Content="Очередь" HorizontalAlignment="Left" Height="30" Margin="458,-3,0,0" VerticalAlignment="Top" Width="112" HorizontalContentAlignment="Center"/>
 
     </Grid>
 </Window>

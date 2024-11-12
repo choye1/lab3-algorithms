@@ -5,9 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:lab3"
         mc:Ignorable="d"
-        Title="WindowForTasks" Height="450" Width="800">
+        ResizeMode="NoResize"
+        Title="WindowForTasks" Height="370" Width="810">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="220"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Background" Value="#4CAF50"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="5" ShadowDepth="2" Color="#888888"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <TextBox  Width="96"  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="NumberOfTask" Margin="19,50,0,0" TextChanged="TaskSelected"/>
+        <TextBox  Width="96"  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="NumberOfTask" Margin="19,50,0,0" TextChanged="TaskSelected" BorderBrush="#D3E4FF" BorderThickness="2"/>
         <TextBlock IsHitTestVisible="False" Text="Номер Задания" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="24,51,0,0" Foreground="DarkGray">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
@@ -20,7 +48,7 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <TextBox  Width="250"  VerticalAlignment="Top" HorizontalAlignment="Left" KeyDown="tbTaskKeydown" x:Name="List1" Margin="124,50,0,0"/>
+        <TextBox  Width="250"  VerticalAlignment="Top" HorizontalAlignment="Left" KeyDown="tbTaskKeydown" x:Name="List1" Margin="124,50,0,0" BorderBrush="#D3E4FF" BorderThickness="2"/>
         <TextBlock IsHitTestVisible="False" Text="Список 1" VerticalAlignment="Top" TextAlignment="Center" HorizontalAlignment="Left" Margin="137,51,0,0" Foreground="DarkGray" Width="224">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
@@ -33,7 +61,7 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <TextBox  Width="250"  VerticalAlignment="Top" HorizontalAlignment="Left" KeyDown="tbTaskKeydown" x:Name="List2" Margin="385,50,0,0"/>
+        <TextBox  Width="250"  VerticalAlignment="Top" HorizontalAlignment="Left" KeyDown="tbTaskKeydown" x:Name="List2" Margin="385,50,0,0" BorderBrush="#D3E4FF" BorderThickness="2"/>
         <TextBlock IsHitTestVisible="False" Text="Список 2 / аргументы для задания."  VerticalAlignment="Top" TextAlignment="Center" HorizontalAlignment="Left" Margin="398,51,0,0" Foreground="DarkGray" Width="224">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
@@ -46,9 +74,10 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <Button Content="Button" HorizontalAlignment="Left" Height="18" Margin="640,50,0,0" VerticalAlignment="Top" Width="139" Click="BtStartFourPart"/>
-        <TextBox Name ="TbOut" HorizontalAlignment="Left" Height="131" Margin="19,86,0,0" VerticalAlignment="Top" Width="616" IsReadOnly="True"/>
-        <TextBox  Width="250"  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="tbRpnIn" KeyDown="tbCommandKeydown" Margin="176,294,0,0"/>
+        <Button Content="Выполнить" HorizontalAlignment="Left" Height="18" Margin="640,50,0,0" VerticalAlignment="Top" Width="139" Click="BtStartFourPart"/>
+        <TextBox Name ="TbOut" HorizontalAlignment="Left" Height="170" Margin="19,86,0,0" VerticalAlignment="Top" Width="760" IsReadOnly="True" TextChanged="TbOut_TextChanged" 
+                 Background="AliceBlue" BorderBrush="#D3E4FF" BorderThickness="2" />
+        <TextBox  Width="250"  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="tbRpnIn" KeyDown="tbCommandKeydown" Margin="176,294,0,0" BorderBrush="#D3E4FF" BorderThickness="2"/>
         <TextBlock IsHitTestVisible="False" Text="Выражение для RPN" VerticalAlignment="Top" TextAlignment="Center" HorizontalAlignment="Left" Margin="189,294,0,0" Foreground="DarkGray" Width="217" Height="18">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
@@ -61,7 +90,7 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <Button Content="Button" HorizontalAlignment="Left" Height="18" Margin="457,294,0,0" VerticalAlignment="Top" Width="138" Click="BtStartRPN"/>
+        <Button Content="Выполнить" HorizontalAlignment="Left" Height="18" Margin="457,294,0,0" VerticalAlignment="Top" Width="138" Click="BtStartRPN"/>
 
 
 

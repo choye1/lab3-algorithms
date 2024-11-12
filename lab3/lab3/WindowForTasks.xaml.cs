@@ -69,7 +69,7 @@ namespace lab3
                     TbOut.Text = ex.Message;
                 }
 
-                TbOut.Text = "Некорректный ввод";
+                TbOut.Text = "Некорректный ввод\n";
             }
 
 
@@ -175,7 +175,7 @@ namespace lab3
 
         private void Write(List<string> list)
         {
-            TbOut.Text += "Result:\n";
+            TbOut.Text += "Результат:\n";
 
             foreach (var s in list)
             {
@@ -198,7 +198,7 @@ namespace lab3
                 RPNHandler rh = new RPNHandler(expression);
                 string rpn = rh.GetRPN();
                 string result = rh.GetResult().ToString();
-                TbOut.Text = "Result: " + result + "\nRPN:" + rpn;
+                TbOut.Text = "Результат: " + result + "\nRPN:" + rpn;
             }
             catch (Exception ex)
             {
@@ -271,5 +271,10 @@ private void TextBlock_KeyDown(object sender, KeyEventArgs e)
 {
 
 }
+
+        private void TbOut_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
