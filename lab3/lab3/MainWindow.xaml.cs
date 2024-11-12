@@ -31,8 +31,8 @@ namespace lab3
         public MainWindow()
         {
             InitializeComponent();
-            WindowForTasks windowForTasks = new WindowForTasks();
-            windowForTasks.Show();
+            
+            
             GraphQueue.Plot.XLabel("Комманда №");
             GraphQueue.Plot.YLabel("Время мс*100");
             GraphStack.Plot.XLabel("Комманда №");

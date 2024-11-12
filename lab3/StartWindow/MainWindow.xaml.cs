@@ -31,5 +31,37 @@ namespace StartWindow
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            lab3.MainWindow win = new lab3.MainWindow();
+            win.Show();
+        }
+
+        private void Part4(object sender, RoutedEventArgs e)
+        {
+            WindowForTasks win = new WindowForTasks();
+            win.Show();
+        }
+        private void Stack(object sender, RoutedEventArgs e)
+        {
+            TextProcessorApp.MainWindow win = new TextProcessorApp.MainWindow();
+            win.Show();
+        }
+        private void Queue(object sender, RoutedEventArgs e)
+        {
+            BankQueueSystem.MainWindow win = new BankQueueSystem.MainWindow();
+            win.Show();
+        }
+        private void Three(object sender, RoutedEventArgs e)
+        {
+            OrganizationApp.MainWindow win = new OrganizationApp.MainWindow();
+            win.Show();
+        }
+        private void List(object sender, RoutedEventArgs e)
+        {
+            PersonContactsApp.MainWindow win = new PersonContactsApp.MainWindow();
+            win.Show();
+        }
     }
 }

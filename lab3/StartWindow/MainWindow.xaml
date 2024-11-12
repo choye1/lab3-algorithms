@@ -5,8 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StartWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Background="AliceBlue"
+        Title="MainWindow" Height="300" Width="400">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="220"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Background" Value="#4CAF50"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="5" ShadowDepth="2" Color="#888888"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
-
+        <Border BorderBrush="#D3E4FF" BorderThickness="2" >
+        <StackPanel VerticalAlignment="Center" Margin="20 0">
+            <Button Content="Терминал" Click="Button_Click" Margin="10"/>
+            <TextBlock Text="3 часть" HorizontalAlignment="Center" Margin="0 10 0 -10"/>
+            <ComboBox Margin="10" Width="230">
+                <Button Click="Stack" Content="Стек: текстовый редактор" Margin="10" HorizontalAlignment="Center"/>
+                <Button Click="List" Content="Список: список контактов" Margin="10" HorizontalAlignment="Center"/>
+                <Button Click="Queue" Content="Очередь: очередь в банке" Margin="10" HorizontalAlignment="Center"/>
+                <Button Click="Three" Content="Дерево: иерархия организации" Margin="10" HorizontalAlignment="Center"/>
+            </ComboBox>
+            <Button Click="Part4" Content="4 часть" Margin="10"/>
+        </StackPanel>
+        </Border>
     </Grid>
 </Window>
