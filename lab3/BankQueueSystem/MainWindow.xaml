@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:BankQueueSystem"
         ResizeMode="NoResize"
-        Title="Bank Queue System" Height="450" Width="750">
+        Title="Bank Queue System" Height="450" Width="765">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Height" Value="20"/>

@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Сontacts", "Сontacts\Сon
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankQueueSystem", "BankQueueSystem\BankQueueSystem.csproj", "{5EBD586B-C14B-49D1-8DD5-79C604BC631D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonContactsApp", "PersonContactsApp\PersonContactsApp.csproj", "{73627D76-630F-4B71-9C2B-DCFF3EA8AC67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonContactsApp", "PersonContactsApp\PersonContactsApp.csproj", "{73627D76-630F-4B71-9C2B-DCFF3EA8AC67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
