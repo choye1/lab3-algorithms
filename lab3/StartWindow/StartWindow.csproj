@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BankQueueSystem\BankQueueSystem.csproj" />
+    <ProjectReference Include="..\Block3\OrganizationApp.csproj" />
+    <ProjectReference Include="..\lab3\lab3.csproj" />
+    <ProjectReference Include="..\LinkedListDynamicStructures\LinkedListDynamicStructures.csproj" />
+    <ProjectReference Include="..\ListDynamicStructures\ListDynamicStructures.csproj" />
+    <ProjectReference Include="..\Logger\Logger.csproj" />
+    <ProjectReference Include="..\part4\part4.csproj" />
+    <ProjectReference Include="..\PersonContactsApp\PersonContactsApp.csproj" />
+    <ProjectReference Include="..\QueueHandlers\QueueHandlers.csproj" />
+    <ProjectReference Include="..\RPNEntities\RPNEntities.csproj" />
+    <ProjectReference Include="..\StackHandkers\StackHandlers.csproj" />
+    <ProjectReference Include="..\TextProcessorApp\TextProcessorApp.csproj" />
+    <ProjectReference Include="..\Сontacts\Сontacts.csproj" />
+  </ItemGroup>
+
+</Project>
