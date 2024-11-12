@@ -1,24 +1,83 @@
 ﻿<Window x:Class="OrganizationApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Организационная структура" Height="500" Width="800">
+        Title="Организационная структура" Height="450" Width="700">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="220"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Background" Value="#4CAF50"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="5" ShadowDepth="2" Color="#888888"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="ListBoxItem">
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="0,2"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="3" ShadowDepth="1" Color="#DDDDDD"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="5">
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <!-- Триггер для изменения цвета при выделении элемента -->
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#D3E4FF"/>
+                    <!-- Цвет выделения -->
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid>
         <!-- Дерево сотрудников -->
-        <TreeView x:Name="EmployeeTreeView" HorizontalAlignment="Left" Width="300" Margin="10"/>
+        <TreeView x:Name="EmployeeTreeView" HorizontalAlignment="Left" Width="300" Height="350" Margin="30" 
+                  BorderBrush="#64B5F6" BorderThickness="2" Background="AliceBlue"/>
 
         <!-- Панель с полями для управления сотрудниками -->
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Width="400" Margin="10">
+        <Border BorderBrush="#64B5F6" BorderThickness="2" HorizontalAlignment="Right"
+                Height="350" Margin="0 0 30 0"  Padding="0 10 0 0" Background="AliceBlue">
+            
+        <StackPanel  Width="300">
             <!-- Поля для добавления сотрудника -->
-            <TextBlock Text="Имя сотрудника:" Margin="5"/>
+            <TextBlock Text="Имя сотрудника:" Margin="5" HorizontalAlignment="Center"/>
             <TextBox x:Name="NameTextBox" Width="200" Margin="5"/>
 
-            <TextBlock Text="Должность:" Margin="5"/>
+            <TextBlock Text="Должность:" Margin="5" HorizontalAlignment="Center"/>
             <TextBox x:Name="PositionTextBox" Width="200" Margin="5"/>
 
-            <TextBlock Text="Зарплата:" Margin="5"/>
+            <TextBlock Text="Зарплата:" Margin="5" HorizontalAlignment="Center"/>
             <TextBox x:Name="SalaryTextBox" Width="200" Margin="5"/>
 
-            <TextBlock Text="Имя менеджера (если есть):" Margin="5"/>
+            <TextBlock Text="Имя менеджера (если есть):" Margin="5" HorizontalAlignment="Center"/>
             <TextBox x:Name="ManagerTextBox" Width="200" Margin="5"/>
 
             <!-- Кнопки для управления сотрудниками -->
@@ -30,5 +89,6 @@
 
             <!-- Результаты поиска -->
         </StackPanel>
+        </Border>
     </Grid>
 </Window>

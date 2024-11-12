@@ -3,15 +3,38 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:BankQueueSystem"
         Title="Bank Queue System" Height="450" Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="3*" />
-        </Grid.ColumnDefinitions>
-
-        <StackPanel Grid.Column="0" Margin="10">
-            <TextBlock Text="Add Client" FontSize="16" Margin="0,0,0,10" />
-            <local:PlaceholderTextBox x:Name="ClientNameTextBox" Placeholder="Client Name" Margin="0,0,0,10" />
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="220"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Background" Value="#4CAF50"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="5" ShadowDepth="2" Color="#888888"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <StackPanel Orientation="Horizontal">
+        <Border BorderBrush="#D3E4FF" BorderThickness="2" Background="AliceBlue" Margin="10">
+        <StackPanel Margin="10">
+            <TextBlock Text="Add Client" FontSize="16" Margin="0,0,0,10" HorizontalAlignment="Center"/>
+                <local:PlaceholderTextBox x:Name="ClientNameTextBox" Placeholder="Client Name" Margin="0,0,0,10" BorderBrush="#D3E4FF" BorderThickness="2"/>
             <ComboBox x:Name="ServiceComboBox" Margin="0,0,0,10">
                 <ComboBoxItem Content="Service 1" Tag="5" />
                 <ComboBoxItem Content="Service 2" Tag="10" />
@@ -19,17 +42,20 @@
             </ComboBox>
             <Button Content="Add Client" Click="AddClient_Click" Margin="0,0,0,10" />
 
-            <TextBlock Text="Number of Bankers" FontSize="16" Margin="0,10,0,10" />
-            <local:PlaceholderTextBox x:Name="NumberOfBankersTextBox" Placeholder="Number of Bankers" Margin="0,0,0,10" />
+            <TextBlock Text="Number of Bankers" FontSize="16" Margin="0,10,0,10" HorizontalAlignment="Center"/>
+                <local:PlaceholderTextBox x:Name="NumberOfBankersTextBox" Placeholder="Number of Bankers" Margin="0,0,0,10" BorderBrush="#D3E4FF" BorderThickness="2"/>
             <Button Content="Set Bankers" Click="SetBankers_Click" Margin="0,0,0,10" />
         </StackPanel>
+        </Border>
 
-        <StackPanel Grid.Column="1" Margin="10">
+        <Border BorderBrush="#D3E4FF" BorderThickness="2" Margin="30 10 10 10" Padding="10" Background="AliceBlue">
+        <StackPanel Margin="10" Width="400">
             <TextBlock Text="Queue" FontSize="16" Margin="0,0,0,10" />
             <ListBox x:Name="QueueListBox" Margin="0,0,0,10" />
 
             <TextBlock Text="Bankers" FontSize="16" Margin="0,10,0,10" />
             <ItemsControl x:Name="BankersItemsControl" Margin="0,0,0,10" />
         </StackPanel>
-    </Grid>
+        </Border>
+    </StackPanel>
 </Window>

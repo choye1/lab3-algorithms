@@ -1,10 +1,50 @@
 ﻿<Window x:Class="TextProcessorApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Text Editor" Height="450" Width="700">
+        ResizeMode="NoResize"
+        Title="Text Editor" Height="470" Width="700">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="220"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Background" Value="#4CAF50"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="5" ShadowDepth="2" Color="#888888"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     
-    
-    <Grid>
+    <StackPanel>
+       
+        <!-- Поле для ввода имени файла с поясняющим текстом -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,50,10,10">
+            <TextBlock Text="Имя файла:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <TextBox Name="fileNameTextBox" Width="300" Margin="5" BorderBrush="#D3E4FF" BorderThickness="2"/>
+        </StackPanel>
+
+        <!-- Поле TextBox для ввода текста -->
+        <TextBox Name="textBox" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+                 AcceptsReturn="True" Margin="30,10,30,10" TextWrapping="Wrap" FontSize="16" KeyDown="MainWindow_KeyDown"
+                 Height="270" Background="AliceBlue" BorderBrush="#D3E4FF" BorderThickness="2">
+        </TextBox>
+
         <!-- Панель с кнопками управления -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
             <Button Content="Undo" Width="75" Margin="5" Click="Undo_Click"/>
@@ -12,15 +52,5 @@
             <Button Content="Save" Width="75" Margin="5" Click="Save_Click"/>
         </StackPanel>
 
-        <!-- Поле для ввода имени файла с поясняющим текстом -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,50,10,10">
-            <TextBlock Text="Имя файла:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-            <TextBox Name="fileNameTextBox" Width="300" Margin="5"/>
-        </StackPanel>
-
-        <!-- Поле TextBox для ввода текста -->
-        <TextBox Name="textBox" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
-                 AcceptsReturn="True" Margin="10,100,10,10" TextWrapping="Wrap" FontSize="16" KeyDown="MainWindow_KeyDown"/>
-    
-    </Grid>
+    </StackPanel>
 </Window>
