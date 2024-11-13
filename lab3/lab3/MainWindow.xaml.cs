@@ -52,8 +52,6 @@ namespace lab3
 
             Logger logger = new Logger();
             logger.RemoveLogs();
-            string namefile = "a.txt"; //СЮДА  ИМЯ ФАЙЛА, ИЗ КОТОРОГО ЧИТАЕМ ДАННЫЕ ДЛЯ КУЕУЕ
-            string namefileForStack = "b.txt"; //СЮДА  ИМЯ ФАЙЛА, ИЗ КОТОРОГО ЧИТАЕМ ДАННЫЕ ДЛЯ СТЕКА
 
             //float[] timeForGraphQueue = new QueueHandler(namefile).HandleFile();
 
@@ -266,8 +264,8 @@ namespace lab3
 
             float[] timeForGraphStack = new StackHandler(namefileForStack).HandleFile();
             WriteGraph(timeForGraphStack, "stack", "На списках");
-            WriteGraph(new LinkedListStackHandler(namefile).HandleFile(), "stack", "На Linked-List");
-            WriteGraph(new StandartStackHandler(namefile).HandleFile(), "stack", "На Stack-e");
+            WriteGraph(new LinkedListStackHandler(namefileForStack).HandleFile(), "stack", "На Linked-List");
+            WriteGraph(new StandartStackHandler(namefileForStack).HandleFile(), "stack", "На Stack-e");
 
 
 
