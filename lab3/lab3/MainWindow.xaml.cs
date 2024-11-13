@@ -246,6 +246,7 @@ namespace lab3
 
         private void UsingCommandFile(object sender, RoutedEventArgs e)
         {
+            tbConsole.Text = "";
             GraphQueue.Plot.Clear();
             GraphStack.Plot.Clear();
             maxOfTimesS = 0;
