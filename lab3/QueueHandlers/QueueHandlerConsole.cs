@@ -63,7 +63,7 @@ namespace DynamicStructuresEntities
                     else if (s == "5")
                     {
                         logger.WriteLine("Выполнена команда print");
-                        queue.Print();
+                        //queue.Print();
 
 
                     }
@@ -72,7 +72,7 @@ namespace DynamicStructuresEntities
                         logger.WriteLine("Некорректный ввод");
                     }
 
-                    //queue.Print();
+                    queue.Print();
                     stopwatch.Stop();
                     TimeSpan timeSpan = stopwatch.Elapsed;
                     stopwatch.Reset();

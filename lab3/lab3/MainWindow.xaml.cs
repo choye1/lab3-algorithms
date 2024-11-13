@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -18,6 +19,7 @@ using DynamicStructuresEntities;
 using ListDynamicStructures;
 using Loggers;
 using part4;
+using ScottPlot;
 using StackHandlers;
 
 
@@ -109,6 +111,7 @@ namespace lab3
         {
             try
             {
+                tbConsole.Text = "";
                 Logger logger = new Logger();
                 logger.RemoveLogs();
 
@@ -154,10 +157,10 @@ namespace lab3
 
             switch (addresseeCommand)
             {
-                case ("stack"):
+                case ("stack" or "s" or "st"):
                     ParsedCommand.Add("s");
                     break;
-                case ("queue"):
+                case ("queue" or "q" or "qu"):
                     ParsedCommand.Add("q");
                     break;
                 default: throw new Exception("Некорректный ввод адресата комманды, \nиспользуйте следующий синтаксис: [stack/queue] command [args]");
@@ -181,7 +184,7 @@ namespace lab3
             commandName = commandName.ToLower();
             switch (commandName)
             {
-                case ("push" or "add" or "queue"):
+                case ("push" or "add" or "enqueue"):
                     return "1,";
 
                 case ("pop" or "remove" or "dequeue"):
@@ -238,42 +241,70 @@ namespace lab3
             return result.ToArray();
         }
 
+        float maxOfTimesQ = 0;
+        float maxOfTimesS = 0;
+
         private void UsingCommandFile(object sender, RoutedEventArgs e)
         {
-
+            GraphQueue.Plot.Clear();
+            GraphStack.Plot.Clear();
+            maxOfTimesS = 0;
+            maxOfTimesQ = 0;
             Logger logger = new Logger();
             logger.RemoveLogs();
             string namefile = "queue.txt"; //СЮДА ИМЯ ФАЙЛА, ИЗ КОТОРОГО ЧИТАЕМ ДАННЫЕ ДЛЯ КУЕУЕ
             string namefileForStack = "stack.txt"; //СЮДА ИМЯ ФАЙЛА, ИЗ КОТОРОГО ЧИТАЕМ ДАННЫЕ ДЛЯ СТЕКА
 
             float[] timeForGraphQueue = new QueueHandler(namefile).HandleFile();
-            WriteGraph(timeForGraphQueue, "queue");
+            WriteGraph(timeForGraphQueue, "queue", "На списках");
+            WriteGraph(new LinkedListQueueHandler(namefile).HandleFile(), "queue", "На Linked-List");
+            WriteGraph(new StandartQueueHandler(namefile).HandleFile(), "queue", "На Queue");
+
             logger.WriteLine("^Queue^"); 
             logger.WriteLine("\\/Stack\\/");
 
             float[] timeForGraphStack = new StackHandler(namefileForStack).HandleFile();
-            WriteGraph(timeForGraphStack, "stack");
+            WriteGraph(timeForGraphStack, "stack", "На списках");
+            WriteGraph(new LinkedListStackHandler(namefile).HandleFile(), "stack", "На Linked-List");
+            WriteGraph(new StandartStackHandler(namefile).HandleFile(), "stack", "На Stack-e");
+
+
 
             WriteArray(logger.Read());
         }
 
-        private void WriteGraph(float[] times, string addreess)
+       
+        private void WriteGraph(float[] times, string addreess, string nameOfSrtuct)
         {
+
             List<float> dataX = new List<float>();
             for (int i = 1; i < times.Length+1; i++) { dataX.Add((float)i); }
             if (addreess == "queue")
             {
-                GraphQueue.Plot.Add.Scatter(dataX.ToArray(), times);
-                GraphQueue.Plot.Axes.SetLimits(-1, dataX.Max() + 1, times.Min() - 2, times.Max() + 2);
+                maxOfTimesQ = times.Max() > maxOfTimesQ ? times.Max() : maxOfTimesQ;
+                var scat = GraphQueue.Plot.Add.Scatter(dataX.ToArray(), times);
+                scat.Label = nameOfSrtuct;
+                GraphStack.Plot.ShowLegend();
+                GraphQueue.Plot.Legend.Alignment = Alignment.UpperLeft;
                 GraphQueue.Refresh();
 
             }
             else
             {
-                GraphStack.Plot.Add.Scatter(dataX.ToArray(), times);
-                GraphStack.Plot.Axes.SetLimits(-1, dataX.Max() + 1, times.Min() - 2, times.Max() + 2);
+                maxOfTimesS = times.Max() > maxOfTimesS ? times.Max() : maxOfTimesS;
+                var scat = GraphStack.Plot.Add.Scatter(dataX.ToArray(), times);
+                scat.Label = nameOfSrtuct;
+                GraphStack.Plot.ShowLegend();
+                GraphStack.Plot.Legend.Alignment = Alignment.UpperLeft;
                 GraphStack.Refresh();
             }
+
+            GraphQueue.Plot.Axes.SetLimits(-1, dataX.Max() + 1, 0, maxOfTimesQ + 2);
+            GraphQueue.Refresh();
+
+            GraphStack.Plot.Axes.SetLimits(-1, dataX.Max() + 1, 0, maxOfTimesS + 2);
+            GraphStack.Refresh();
+
 
         }
 

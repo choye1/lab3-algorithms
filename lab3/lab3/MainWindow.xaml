@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:lab3"
         xmlns:ScottPlot="clr-namespace:ScottPlot.WPF;assembly=ScottPlot.WPF"
+        WindowStartupLocation="CenterScreen" 
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="MainWindow" Height="470" Width="800">
+        Title="MainWindow" Height="721" Width="990">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Height" Value="20"/>
@@ -35,16 +36,16 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Grid>
-        <ScottPlot:WpfPlot x:Name="GraphQueue" HorizontalAlignment="Left" Height="139" Margin="404,8,0,0"  VerticalAlignment="Top" Width="192" Background="AliceBlue"/>
-        <TextBox x:Name="tbConsole" HorizontalAlignment="Left" IsReadOnly="True" Height="300" VerticalAlignment="Top" Width="370" Margin="20" Background="AliceBlue" BorderBrush="#D3E4FF" BorderThickness="2"/>
-        <TextBox x:Name="tbCommand" HorizontalAlignment="Left" Height="32" Margin="127,341,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="425" KeyDown="tbCommandKeydown"  Background="AliceBlue" BorderBrush="#D3E4FF" BorderThickness="2"/>
-        <Label Content="Команда:" HorizontalAlignment="Left" Height="32" Margin="50,341,0,0" VerticalAlignment="Top" Width="117"/>
-        <Button Content="Выполнить" HorizontalAlignment="Left" Height="32" Margin="577,341,0,0" VerticalAlignment="Top" Width="179" Click="Button_Click"/>
-        <Button Content="Считать комманды из файла" HorizontalAlignment="Left" Height="32" Margin="577,383,0,0" VerticalAlignment="Top" Width="179" Click="UsingCommandFile"/>
-        <ScottPlot:WpfPlot x:Name="GraphStack" HorizontalAlignment="Left" Height="139" Margin="588,160,0,0"  VerticalAlignment="Top" Width="192" Background="AliceBlue"/>
-        <Label Content="Стек" HorizontalAlignment="Left" Height="29" Margin="645,141,0,0" VerticalAlignment="Top" Width="112" HorizontalContentAlignment="Center"/>
-        <Label Content="Очередь" HorizontalAlignment="Left" Height="30" Margin="458,-3,0,0" VerticalAlignment="Top" Width="112" HorizontalContentAlignment="Center"/>
+    <Grid Margin="0,0,10,15">
+        <ScottPlot:WpfPlot x:Name="GraphQueue" HorizontalAlignment="Left" Height="276" Margin="404,8,0,0"  VerticalAlignment="Top" Width="334" Background="AliceBlue"/>
+        <TextBox x:Name="tbConsole" HorizontalAlignment="Left" IsReadOnly="True" Height="475" VerticalAlignment="Top" Width="370" Margin="20,20,0,0" Background="AliceBlue" BorderBrush="#D3E4FF" BorderThickness="2"/>
+        <TextBox x:Name="tbCommand" HorizontalAlignment="Left" Height="32" Margin="234,588,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="425" KeyDown="tbCommandKeydown"  Background="AliceBlue" BorderBrush="#D3E4FF" BorderThickness="2"/>
+        <Label Content="Команда:" HorizontalAlignment="Left" Height="32" Margin="157,588,0,0" VerticalAlignment="Top" Width="117"/>
+        <Button Content="Выполнить" HorizontalAlignment="Left" Height="32" Margin="684,588,0,0" VerticalAlignment="Top" Width="179" Click="Button_Click"/>
+        <Button Content="Считать комманды из файла" HorizontalAlignment="Left" Height="32" Margin="684,630,0,0" VerticalAlignment="Top" Width="179" Click="UsingCommandFile"/>
+        <ScottPlot:WpfPlot x:Name="GraphStack" HorizontalAlignment="Left" Height="254" Margin="665,284,0,0"  VerticalAlignment="Top" Width="305" Background="AliceBlue"/>
+        <Label Content="Стек" HorizontalAlignment="Left" Height="29" Margin="762,266,0,0" VerticalAlignment="Top" Width="112" HorizontalContentAlignment="Center" RenderTransformOrigin="1.004,1.875"/>
+        <Label Content="Очередь" HorizontalAlignment="Left" Height="30" Margin="515,-10,0,0" VerticalAlignment="Top" Width="112" HorizontalContentAlignment="Center"/>
 
     </Grid>
 </Window>

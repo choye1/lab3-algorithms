@@ -62,14 +62,14 @@ namespace StackHandlers
                     else if (s == "5")
                     {
                         logger.WriteLine("Выполнена команда print");
-                        stack.Print();
+                       // stack.Print();
                     }
                     else
                     {
                         logger.WriteLine("Некорректный ввод");
                     }
 
-                    //stack.Print();
+                    stack.Print();
 
                     stopwatch.Stop();
                     TimeSpan timeSpan = stopwatch.Elapsed;
